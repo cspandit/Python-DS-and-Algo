@@ -1,0 +1,17 @@
+i = j = 0
+n = size of array A
+k = window size
+
+while j < n:
+    do calculation
+
+    if j - i - 1 < k:
+        j++
+
+    else if j - i - 1 == k:
+        get ans from calculation
+        j++
+
+        remove calculation for A[i] if needed
+        i++
+return ans

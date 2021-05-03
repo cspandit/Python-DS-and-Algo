@@ -1,0 +1,17 @@
+i = j = 0
+n = size of array
+k  = condition
+while j < n:
+    do calculation
+    if calculation < k:
+        j++
+
+    else if calculation  == k:
+        calculate ans
+        j++
+
+    else  if calculation > k:
+        while calculation > k:
+            remove calculation
+            i++
+        j++
