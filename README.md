@@ -1,2 +1,2 @@
 # Python
-python practice question
+Data structure and Algorithms in Python
