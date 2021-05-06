@@ -1,0 +1,104 @@
+super() is used to call the __init__() method of parent class, essentially calling any overridden method of the base class.
+
+Python 3:
+class Person:
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+
+    def showName(self):
+        return self.name
+
+    def changeName(self,rename):
+        self.name = rename
+        print("Now name is changed to {}".format(self.name))
+
+
+class Student(Person):
+    def __init__(self,student_name,student_age,student_id):
+        super().__init__(student_name,student_age)
+        self.student_id = student_id
+
+
+    def showStudentId(self):
+        return self.student_id
+
+s = Student("chandra",32,89)
+print(s.showName())
+print(s.showStudentId())
+s.changeName("shekhar")
+
+
+Python 2: Parent class must inherit from "obejct" and Super() contain subclass and self as argument
+
+class Person(object):
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+
+    def showName(self):
+        return self.name
+
+    def changeName(self,rename):
+        self.name = rename
+        print("Now name is changed to {}".format(self.name))
+
+
+class Student(Person):
+    def __init__(self,student_name,student_age,student_id):
+        super(Student,self).__init__(student_name,student_age)
+        self.student_id = student_id
+
+
+    def showStudentId(self):
+        return self.student_id
+
+s = Student("chandra",32,89)
+print(s.showName())
+print(s.showStudentId())
+s.changeName("shekhar")
+
+
+In the case of multi-level inheritances which class will it refer? Well, Python super() will always refer the immediate superclass.
+Also Python super() function not only can refer the __init__() function but also can call all other function of the superclass. So, in the following example, we will see that.
+
+class A:
+    def __init__(self):
+        print('Initializing: class A')
+
+    def sub_method(self, b):
+        print('Printing from class A:', b)
+
+
+class B(A):
+    def __init__(self):
+        print('Initializing: class B')
+        super().__init__()
+
+    def sub_method(self, b):
+        print('Printing from class B:', b)
+        super().sub_method(b + 1)
+
+
+class C(B):
+    def __init__(self):
+        print('Initializing: class C')
+        super().__init__()
+
+    def sub_method(self, b):
+        print('Printing from class C:', b)
+        super().sub_method(b + 1)
+
+
+if __name__ == '__main__':
+    c = C()
+    c.sub_method(1)
+Let’s see the output of above python 3 super example with multi-level inheritance.
+
+
+Initializing: class C
+Initializing: class B
+Initializing: class A
+Printing from class C: 1
+Printing from class B: 2
+Printing from class A: 3

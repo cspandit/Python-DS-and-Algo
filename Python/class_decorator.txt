@@ -1,0 +1,71 @@
+Like class decorator decorated function type not "Function" rather it is of type <Class_Decorrator> type
+
+#Example: class decorator to calculate execution time of a function
+
+from time import sleep
+from time import time
+
+class CDecorator:
+    def __init__(self,fun):
+        self.fun = fun
+    
+    #definig __call__ method inisde class make its instances callable
+    def __call__(self, *args, **kwargs):
+        start_time = time()
+        self.fun()
+        end_time = time()
+        print("Time taken by function my_fun() to execute is {}".format(end_time-start_time))
+        
+        
+    
+@CDecorator
+def my_fun(delay):
+    print("I am going to sleep \n")
+    spleep(delay)
+    print("I am awake")
+    
+    
+print(type(my_fun))
+my_fun(10)
+
+#Output:
+<class '__main__.CDecorator'>
+I am going to sleep 
+
+I am awake
+Time taken by function my_fun() to execute is 10.028468370437622
+********************************************************************
+
+Lets take example where a function return a value. Below decorator class make sure that value is return 
+with $ added to.
+
+class Decorator:
+    def __init__(self, fun):
+        self.fun = fun
+        
+    def __call__(self, *args, **kwargs):
+        res = self.fun(*args)
+        return "$"+str(res)
+        
+
+@Decorator
+def give_square(a,b):
+    return a+b
+    
+print(give_square(1,2))
+
+Function decorator for above job will be as below
+
+def decorator(fun):
+    def new_func(*args, **kwargs):
+        res = fun(*args)
+        return "$"+str(res)
+        
+    return new_func
+    
+@decorator
+def my_fun(a,b):
+    return a+b 
+
+print(my_fun(1,2))
+#my_fun = decorator(my_fun)

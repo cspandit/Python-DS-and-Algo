@@ -1,0 +1,194 @@
+Inheritate built-in class list to make Contact Application
+Example of simple inheritance: 
+
+class ContactList(list):
+
+    def search(self, name):
+        found_contact = []
+        for contact in self:
+            if name in contact.name:
+                found_contact.append(contact)
+        return found_contact
+
+
+class Contact:
+
+    all_contact = ContactList()
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+        self.all_contact.append(self)
+
+    @classmethod
+    def send_email(cls, message, name):
+        for contact in cls.all_contact:
+            if contact.name == name:
+                print("Sending email to {}".format(contact.name))
+
+
+class AddressHolder:
+    def __init__(self, country, city, village, ward):
+        self.country = country
+        self.city = city
+        self.village = village
+        self.ward = ward
+
+
+# Multiple Inheritance 
+
+when overriding method with class name, object reference(self) should be used as first argument. This isthe most naive approach. It has below problem(Diamond Problem)
+
+class Friend(Contact, AddressHolder):
+    def __init__(self, name, email, phone_no, country=None, city=None, village=None, ward=None):
+        Contact.__init__(self, name, email)
+        AddressHolder.__init__(self, country, city, village, ward)
+        self.phone_no = phone_no
+
+
+
+Contact("chandra pandit", "xxx@yyy")
+Contact("chandra kumar", "aaa@bbb")
+Contact("jay kumar", "vvv@mmm")
+a = Friend("Nabin Chaudhary", "ffff@hhhh", "984083", country="Nepal")
+
+print([x.name for x in Contact.all_contact.search("chandra")])
+print([[x.phone_no, x.country] for x in Contact.all_contact.search("Nabin")])
+Contact.send_email("Hi There !", "Nabin Chaudhary")
+
+
+Output:
+['chandra pandit', 'chandra kumar']
+[['984083', 'Nepal']]
+Sending email to Nabin Chaudhary
+
+         
+Diamond Problem:
+The __init__ method from the Friend class first calls __init__ on Contact which implicitly initializes the object superclass (remember, all classes derive from object). Friend then calls __init__ on AddressHolder, which implicitly initializes the object superclass... again. The parent class has been set up twice. In this case, that's relatively harmless, but in some situations, it could spell disaster. Imagine trying to connect to a database twice for every request! The base class should only be called once. Once, yes, but when? Do we call Friend then Contact then Object then AddressHolder? Or Friend then Contact then AddressHolder then Object?
+Technically, the order in which methods can be called can be adapted on the fly by modifying the __mro__(Method Resolution Order) attribute on the class.
+
+lets look below problem:        1
+                                class BaseClass:
+                                    num_base_call = 0
+                                    def make_call(self):
+                                        print("Calling from BaseClass")
+                                        num_base_call += 1
+       2                                                       3
+       class LeftClass(BaseClass):                             class RightClass(BaseClass):
+            num_left_class = 0                                     num_right_class = 0
+            def make_call(self):                                   def make_call(self):
+                BaseClass.make_call(self)                               BaseClass.make_call(self)
+                print("Calling from LeftClass")                         print("Calling from RightClass")
+                num_left_class += 1                                     num_right_class += 1
+                
+                                4
+                                class SubClass(LeftClass, RightClass):
+                                    num_sub_call = 0
+                                    def make_call(self):
+                                        LeftClass.make(self)
+                                        RightClass.make_call(self)
+                                        print("Calling from SubClass")
+                                        num_sub_call += 1
+                                        
+                                        
+s = Subclass()
+s.make_call()
+Calling from BaseClass
+Calling from LeftClass
+Calling from BaseClass
+Calling from RightClass
+Calling from Subclass
+print(s.num_sub_call, s.num_left_call, s.num_right_call, s.num_base_call)
+1 1 1 2
+The base class's call_me method has been called twice. This isn't expected behavior and can lead to some very difficult bugs if that method is doing actual work—like depositing into a bank account twice.
+
+using super:
+1
+                                class BaseClass:
+                                    num_base_call = 0
+                                    def make_call(self):
+                                        print("Calling from BaseClass")
+                                        num_base_call += 1
+       2                                                       3
+       class LeftClass(BaseClass):                             class RightClass(BaseClass):
+            num_left_class = 0                                     num_right_class = 0
+            def make_call(self):                                   def make_call(self):
+                super().make_call()                                       super().make_call()
+                print("Calling from LeftClass")                         print("Calling from RightClass")
+                num_left_class += 1                                     num_right_class += 1
+                
+                                4
+                                class SubClass(LeftClass, RightClass):
+                                    num_sub_call = 0
+                                    def make_call(self):
+                                        super().make_call()
+                                        print("Calling from SubClass")
+                                        num_sub_call += 1   
+s = SubClass()
+s.make_call()
+Calling from BaseClass
+Calling from RightClass
+Calling from LeftClass
+Calling from SubClass
+If we see the above example then the order of search for the attributes will be Derived, Base1, Base2, object.The order that is followed is known as a linearization of the class Derived and this order is found out using a set of rules. 
+But what we shuld notice here in particular that at 2nd call(leftClass ) calls __init__ method of RightClass which is not even its parent class.
+
+Different sets of arguments:
+class Friend(Contact, AddressHolder):
+    def __init__(self, name, email, phone_no, country=None, city=None, village=None, ward=None):
+        Contact.__init__(self, name, email)
+        AddressHolder.__init__(self, country, city, village, ward)
+        self.phone_no = phone_no
+        
+what if we want to use supper function to override __init__method?
+How will we pass the right set of argument to subsequent __init__ method call ?
+
+Specifically, here the first call to super passes the name and email arguments
+to Contact.__init__, and Contact.__init__ then calls super, it needs to be able to pass the address related arguments to the "next" method, which is AddressHolder.__init__.
+
+solution to this problem we have tp design our classes with appropriate set of key word arguments for __init__method
+
+class Contact:
+
+    all_contact = ContactList()
+
+    def __init__(self, name=None, email=None, **kwargs):
+        super().__init__(**kwargs)
+        self.name = name
+        self.email = email
+        self.all_contact.append(self)
+
+class AddressHolder:
+    def __init__(self, country=None, city=None, village=None, ward=None, **kwargs):
+        self.country = country
+        self.city = city
+        self.village = village
+        self.ward = ward
+
+class Friend(Contact, AddressHolder):
+    def __init__(self, phone_no=None, **kwargs):
+        super().__init__(**kwargs)
+        self.phone_no = phone_no
+
+
+Contact(name="chandra pandit", email="xxx@yyy")
+Contact(name="chandra kumar", email="aaa@bbb")
+Contact(name="jay kumar", email="vvv@mmm")
+a = Friend(name="Nabin Chaudhary", email="ffff@hhhh", phone_no="984083", country="Nepal")
+
+print(a.country)
+print(a.name)
+print(a.email)
+print(a.phone_no)
+print(a.city)
+print(a.ward)
+
+Output: 
+Nepal
+Nabin Chaudhary
+ffff@hhhh
+984083
+None
+None
+
+But it's starting to look messy, and it has become difficult to answer the question, "What arguments do we need to pass into Friend.__init__?" This is the foremost question for anyone planning to use the class, so a docstring should be added to the method to explain whatis happening.

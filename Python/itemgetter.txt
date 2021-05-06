@@ -1,0 +1,22 @@
+def itemgetter(*items):
+    if len(items) == 1:
+        item = items[0]
+        def g(obj):
+            return obj[item]
+    else:
+        def g(obj):
+            return tuple(obj[item] for item in items)
+    return g
+    
+print(itemgetter('name')({'name': 'tu', 'age': 18}))
+
+#output : tu
+
+getting the max value from dict
+
+import operator
+stats = {'a':1000, 'b':3000, 'c': 100}
+max(stats.iteritems(), key=operator.itemgetter(1))[0]
+
+here stats.itemgetter() is a sequence whose elements are passed to callable(key) one by one.
+Max return the key,value pair whole value is highest. [0] gives key of the highest key, value pair

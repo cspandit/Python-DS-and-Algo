@@ -1,0 +1,74 @@
+Operator Overloading in Python:
+Operator Overloading means giving extended meaning beyond their predefined operational meaning. For example operator + is used to add two integers as well as join two strings and merge two lists. It is achievable because ‘+’ operator is overloaded by int class and str class. You might have noticed that the same built-in operator or function shows different behavior for objects of different classes, this is called Operator Overloading. 
+
+How to overload the operators in Python? 
+Consider that we have two objects which are a physical representation of a class (user-defined data type) and we have to add two objects with binary ‘+’ operator it throws an error, because compiler don’t know how to add two objects. So we define a method for an operator and that process is called operator overloading. We can overload all existing operators but we can’t create a new operator. To perform operator overloading, Python provides some special function or magic function that is automatically invoked when it is associated with that particular operator. For example, when we use + operator, the magic method __add__ is automatically invoked in which the operation for + operator is defined.
+
+Overloading binary + operator in Python : 
+When we use an operator on user defined data types then automatically a special function or magic function associated with that operator is invoked. Changing the behavior of operator is as simple as changing the behavior of method or function. You define methods in your class and operators work according to that behavior defined in methods. When we use + operator, the magic method __add__ is automatically invoked in which the operation for + operator is defined. There by changing this magic method’s code, we can give extra meaning to the + operator. 
+
+Case1 :
+class Test:
+    def __init__(self,a):
+        self.a = a
+
+    def __add__(self, other):
+        return self.a + other.a
+
+a1 = Test(1)
+a2 = Test(2)
+print(a1+a2)
+
+Output : 3
+
+Case2:
+class Test:
+    def __init__(self,a,b):
+        self.a = a
+        self.b = b
+
+    def __add__(self, other):
+        return self.a + other.a, self.b + other.b
+
+    def __str__(self):
+        return "({}  {})".format(self.a,self.b)
+
+a1 = Test(1,2)
+a2 = Test(3,4)
+a3 = a1+a2
+
+print(type(a3))
+print(a3)
+print(a1)
+print(a2)
+
+Output : <class 'tuple'>
+        (4, 6)
+        (1  2)
+        (3  4)
+        
+Overloading comparision operator. __gt__ magic method is called when we perform comparision on objects
+class Test:
+    def __init__(self,a):
+        self.a = a
+
+    def __gt__(self, other):
+        if self.a > other.a:
+            return True
+        else:
+            return False
+
+    def __str__(self):
+        return "({}  {})".format(self.a,self.b)
+
+a1 = Test(1)
+a2 = Test(3)
+
+print(a1>a2)
+print(a1<a2)
+
+Output : False 
+         True
+         
+Incase of print(a1<a2) same overloaded function __gt__ will be called but of object a2.
+

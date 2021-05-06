@@ -1,0 +1,125 @@
+In python user thinks that = operator create new object but that is not the case.
+Equal operator only create new varaibale which share reference to new object. We have to be very carefull when we are dealing with mutable objects like list in this case
+
+x = [1,2,3]
+y = x
+y.append(4)
+print(x)
+
+o/p : [1,2,3,4]
+Any changes made in list y is reflected in x.
+
+python copy module provide mechanism to copy muatble objects
+
+1. copy.copy() - > shallow copy: 
+A shallow copy means constructing a new collection object and then populating it with references to the child objects found in the original. The copying process does not recurse and therefore won’t create copies of the child objects themselves.
+A shallow copy constructs a new compound object and then (to the extent possible) inserts references into it to the objects found in the original.
+Example:
+
+import copy
+A = [1,2,[3,4]]
+B = copy.copy(A)
+B.append(6)
+B[2].append(5)
+print("A :- {}".format(A))
+print("B :- {}".format(B))
+
+o/p: 
+A :- [1,2,[3,4,5]]
+B :- [1,2,[,3,4,5],6]
+
+Only chages made to member is reflected in A.
+
+2. copy.deepcopy() - > deep copy
+Deep copy is a process in which the copying process occurs recursively. It means first constructing a new collection object and then recursively populating it with copies of the child objects found in the original. In case of deep copy, a copy of object is copied in other object
+A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
+Example:
+A = [1,2,[3,4]]
+B = copy.deepcopy(A)
+B.append(6)
+B[2].append(5)
+print("A :- {}".format(A))
+print("B :- {}".format(B))
+
+o/p: 
+A :- [1,2,[3,4]]
+B :- [1,2,[,3,4,5],6]
+
+Even changes made in members is not reflected in B
+
+One needs to be careful when initializing mutable objects such as lists in the constructor. Consider the following example:
+class Rectangle:
+    def __init__(self, width, height, pos=[0,0]):
+        self.width = width
+        self.height = height
+        self.pos = pos
+
+    def Area(self):
+        print("Area of rectange is {}".format(self.width*self.height))
+
+    def getPosition(self):
+        print("Position : {}".format(self.pos))
+
+
+r = Rectangle(10,5)
+
+r.pos[0] = 4
+r.getPosition()
+
+s = Rectangle(11,6)
+s.getPosition()
+s.pos[0] = 5
+
+r.getPosition()
+
+o/p:
+Position : [4, 0]
+Position : [4, 0]
+Position : [5, 0]
+
+Here changes made in attributes of one instance is refelcted in other as well.
+Solution:
+class Rectangle:
+    def __init__(self, width, height, pos=None):
+        self.width = width
+        self.height = height
+        self.pos = pos or [0,0]
+
+    def Area(self):
+        print("Area of rectange is {}".format(self.width*self.height))
+
+    def getPosition(self):
+        print("Position : {}".format(self.pos))
+
+
+r = Rectangle(10,5)
+
+r.pos[0] = 4
+r.getPosition()
+
+s = Rectangle(11,6)
+s.getPosition()
+s.pos[0] = 5
+
+r.getPosition()
+s.getPosition()
+
+o/p :
+Position : [4, 0]
+Position : [0, 0]
+Position : [4, 0]
+Position : [5, 0]
+
+Note that mutating class variables from instances can lead to some unexpected consequences.
+class D:
+x = []
+def __init__(self, item):
+	self.x.append(item) # note that this is not an assignment!
+d1 = D(1)
+d2 = D(2)
+d1.x
+# [1, 2]
+d2.x
+# [1, 2]
+D.x
+# [1, 2]

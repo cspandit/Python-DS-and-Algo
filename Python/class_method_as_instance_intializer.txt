@@ -1,0 +1,60 @@
+class Person:
+    def __init__(self,first_name,last_name,age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+        self.full_name = self.first_name + " " + self.last_name
+
+    def greet(self):
+        print("Hello my name is {}".format(self.fullname))
+
+#Suppose we want to build instance just by passing full name instead of two names
+
+class Person1:
+    def __init__(self,first_name,age, last_name=None):
+        if last_name is None:
+            self.first_name, self.last_name = first_name.split(" ")
+
+        self.age = age
+        self.full_name = self.first_name + " " + self.last_name
+
+    def greet(self):
+        print("Hello my name is {}".format(self.full_name))
+
+
+p=Person1("chandra shekhar", 32)
+p.greet()
+
+#However, there are two main problems with this bit of code:
+
+#1. The parameters first_name and last_name are now misleading, since you can enter a full name for
+#first_name. Also, if there are more cases and/or more parameters that have this kind of flexibility, the
+#if/elif/else branching can get annoying fast.
+
+#2. Not quite as important, but still worth pointing out: what if last_name is None, but first_name doesn't split
+#into two or more things via spaces? We have yet another layer of input validation and/or exception
+#handling...
+#Enter class methods. Rather than having a single initializer, we will create a separate initializer, called
+#from_full_name, and decorate it with the (built-in) classmethod decorator.
+
+class Person2:
+    def __init__(self,first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+        self.full_name = self.first_name + " " + self.last_name
+
+    @classmethod
+    def getNames(cls, f_name, age):
+        if " " not in f_name:
+            raise ValueError
+        else:
+            first_name, last_name = f_name.split(" ")
+            return cls(first_name,last_name,age)
+
+
+    def greet(self):
+        print("Hello my name is {}".format(self.full_name))
+
+p1 = Person2.getNames("chandra pandit", 32)
+p1.greet()

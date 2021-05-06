@@ -1,0 +1,239 @@
+The key concept of python is objects. Almost everything in python is an object, which includes functions and as well as classes. As a result, functions and classes can be passed as arguments, can exist as an instance, and so on. Above all, the concept of objects let the classes in generating other classes.
+
+The classes that generate other classes are defined as metaclasses
+In python 3 all the classes declared using keyowrd "class" are object of meta class "type"
+
+Conventional Way of creating class:
+class A:
+    def __init__(self, name):
+        self.name = name
+
+    def getName(self):
+        print(self.name)
+
+Using type:
+def init(self,name):
+    self.name = name
+
+def getName(self):
+    print(self.name)
+
+A = type("A",(),{
+    "__init__":init,
+    "getName":getName}
+         )
+
+a = A("Chandra")
+a.getName()
+
+Whenever keyword "class" is used python internally convert to type: type("Name_of_class", tuple_of_parent_class, dictionary_of_all_the_class_attributes)
+
+Example with inheritance and overriding:
+
+def init_person(self,name):
+    self.name = name
+
+def getName(self):
+    print(self.name)
+
+Person = type("Person",(object,),{                              
+    "__init__" : init_person,
+    "getName" : getName})
+
+def init_student(self,name,id):
+    super(Student,self).__init__(name)                      
+    self.id = id
+
+def getID(self):
+    print(self.id)
+
+
+Student = type("Student",(Person,),{
+    "__init__" : init_student,
+    "getID" : getID})
+
+s = Student("Chandra",89)
+s.getName()
+s.getID()
+
+"class A(object):" this is new style declaration. However in python3 it is changed to simple syntax "class A:" But instantiate with "type" it is required.
+Python3 syntax of overiding parent class __init__ method (super().__init__(name)) does not work here. Need to pass args to super()
+We can't use super() without arguments in a function defined outside of a class.
+
+Writing Metaclasses:
+Metaclasses are classes that inherit directly from type. The method that custom metaclasses should implement is the __new__ method. The arguments mentioned in the __new__  method of metaclasses reflects in the __new__ method of type class. It has four positional arguments. They are as follows:
+
+The first argument is the metaclass itself.
+The second argument is the class name.
+The third argument is the  superclasses (in the form of tuple)
+The fourth argument is the attributes of class (in the form of dictionary)
+
+Example:
+class Mymetaclass(type):
+    def __new__(cls,classname, superclasses, atributedict):
+        print("className : {}".format(classname))
+        print("superClass : {}".format(superclasses))
+        print("atributeDict : {}".format(atributedict))
+        return super(Mymetaclass,cls).__new__(cls,classname,superclasses,atributedict)
+
+def init(self,name):
+    self.name = name
+
+Person = Mymetaclass("Person",(),{
+    "__init__":init})
+
+#python3
+class Person1(metaclass=Mymetaclass):
+    def __init__(self,name):
+        self.name = name
+
+#python2
+#class Person2:
+#    __metaclass__ = Mymetaclass
+#    def __init__(self,name):
+#        self.name = name
+
+p0 = Person("Chandra")
+print(type(Person))
+print("\n")
+
+p1 = Person1("pandit")
+print(type(Person1))
+
+
+o/p:
+className : Person
+superClass : ()
+atributeDict : {'__init__': <function init at 0x0000020AA86B4790>}
+className : Person1
+superClass : ()
+atributeDict : {'__module__': '__main__', '__qualname__': 'Person1', '__init__': <function Person1.__init__ at 0x0000020AA86B4940>}
+<class '__main__.Mymetaclass'>
+
+
+<class '__main__.Mymetaclass'>
+
+Metaclass Inheritance:
+Example1:
+class Mymetaclass(type):
+    def __new__(cls,clsname, superclasses, atributedict):
+        return super(Mymetaclass,cls).__new__(cls,clsname,superclasses,atributedict)
+
+A = Mymetaclass("A",(),{})
+
+B = type("B",(),{})
+
+class C(A, B):
+    pass
+
+print(type(A))
+print(type(B))
+print(type(C))
+
+
+o/p:
+<class '__main__.Mymetaclass'>
+<class 'type'>
+<class '__main__.Mymetaclass'>
+
+Here, you can see class C is inherited from class A (metaclass) and class B ( type class). But here the type of class C is a metaclass. This is because when Python interpreter checked the superclasses, it found that the metaclass is a subclass of the type itself. So it considered metaclass as the type of class C to avoid any conflict.  
+
+Example2:
+class Mymetaclass(type):
+    def __new__(cls,clsname, superclasses, atributedict):
+        return super(Mymetaclass,cls).__new__(cls,clsname,superclasses,atributedict)
+
+class Mynewmetaclass(type):
+    def __new__(cls,clsname, superclasses, atributedict):
+        return super(Mymetaclass,cls).__new__(cls,clsname,superclasses,atributedict)
+
+A = Mymetaclass("A",(),{})
+
+B = Mynewmetaclass("B",(),{})
+
+class C(A, B):
+    pass
+
+print(type(A))
+print(type(B))
+print(type(C))
+
+o/p:
+Traceback (most recent call last):
+  File "C:/Users/cpandit/OneDrive - McAfee/Documents/training/matrix_mul.py", line 11, in <module>
+    B = Mynewmetaclass("B",(),{})
+  File "C:/Users/cpandit/OneDrive - McAfee/Documents/training/matrix_mul.py", line 7, in __new__
+    return super(Mymetaclass,cls).__new__(cls,clsname,superclasses,atributedict)
+TypeError: super(type, obj): obj must be an instance or subtype of type
+
+This is because Python can only have one metaclass for a class. Here, class C can’t inherit from two metaclasses, which results in ambiguity.
+
+Usecases of metaclass:
+1. Dynamic class creation
+
+Example : To generate classes dynamically using type.
+class Person:
+    def __init__(self,name):
+        self.name = name
+
+    def getName(self):
+        print(self.name)
+
+
+def create_Class(cls_name):
+    cls_name = cls_name.capitalize()
+    def init(self,name,id):
+        Person.__init__(self,name)
+        self.id = id
+
+    def getId(self):
+        print(self.id)
+
+    globals()[cls_name] = type(cls_name,(Person,),{
+        "__init__":init,
+        "getId":getId})
+
+
+if __name__ == "__main__":
+    students = ["student1", "student2"]
+    [create_Class(s) for s in students]
+    s1 = Student1("Chandra",89)
+    s2 = Student2("kunal", 90)
+
+    print([x for x in dir(s1) if not x.startswith("__")])
+    print([x for x in dir(s1) if not x.startswith("__")])
+    s1.getName()
+    s2.getId()
+
+o/p :
+['getId', 'getName', 'id', 'name']
+['getId', 'getName', 'id', 'name']
+Chandra
+90
+
+2. Class Verification
+If you need to design a class that agrees to a particular interface, then a metaclass is the right solution. We can consider a sample code where a class requires either one of the attributes to be set. Let’s go through the code.
+
+
+class MainClass(type):
+    def __new__(cls, name, bases, attrs):
+        if 'foo' in attrs and 'bar' in attrs:
+            raise TypeError('Class % s cannot contain both foo and bar \
+attributes.' % name)
+        if 'foo' not in attrs and 'bar' not in attrs:
+            raise TypeError('Class % s must provide either a foo \
+attribute or a bar attribute.' % name)
+        else:
+          print('Success')
+              
+  
+        return super(MainClass, cls).__new__(cls, name, bases, attrs)
+  
+class SubClass(metaclass = MainClass):
+    foo = 42
+    bar = 34
+  
+  
+subCls = SubClass()
+
+3. Prevent  inheriting the attributes
