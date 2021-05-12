@@ -1,3 +1,6 @@
+# Problem is to find count of all the anagrams in a string
+
+
 from collections import defaultdict
 
 
