@@ -1,3 +1,6 @@
+# Problem is to print max element in each sub array of size k
+
+
 def find_max_item(array, window_size, n):
     start = 0
     end = 0
