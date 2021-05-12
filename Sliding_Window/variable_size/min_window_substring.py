@@ -1,3 +1,6 @@
+# problem is two find the min size window in string 1 will contain all the characters for string 2
+
+
 from collections import defaultdict
 from sys import maxsize
 
