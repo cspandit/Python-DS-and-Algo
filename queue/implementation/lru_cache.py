@@ -1,4 +1,4 @@
-# Map and doubly linked list queue server the best. Map is used to acheive search operation in O(1)
+# Map and doubly linked list queue serve the best. Map is used to acheive search operation in O(1)
 # Double linked list makes deletion and insertion operation easy. get() and put() is achieved in O(1)
 
 
