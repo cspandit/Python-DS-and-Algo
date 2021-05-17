@@ -1,4 +1,4 @@
-# We can divide bitonic array into tow sorted array. Array from start to peak element[sorted in increasing order]
+# We can divide bitonic array into two sorted array. Array from start to peak element[sorted in increasing order]
 # and array from peak element to end[sorted in decreasing order]. After divide just call BS on both the array.
 
 

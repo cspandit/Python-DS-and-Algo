@@ -30,13 +30,13 @@ def delete_mid(s, n, cur):
         return
     x = s.peek()
     s.pop()
-    delete_mid(s, n-1, cur+1)
-    if cur != n:
+    delete_mid(s, n, cur+1)
+    if cur != n//2:
         s.push(x)
 
 
 stack = Stack()
-for i in range(1, 6):
+for i in range(1, 7):
     stack.push(i)
 print(stack)
 
