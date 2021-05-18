@@ -1,7 +1,7 @@
 # This problem is very similar to permutation_with_case problem where input was always lower case string
 # But in this case input string can contain both upper and lower case letter as well as integer.
 # input : "a1B2" [a1B2, A1b2, a1b1, A1B1]
-# While drawing recursive tree for this problem, for all char we have to choices, either upper or lower.
+# While drawing recursive tree for this problem, for all char we have two choices, either upper or lower.
 # But for a integer we have only one choice, we just include it in output
 
 

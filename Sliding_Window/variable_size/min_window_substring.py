@@ -32,6 +32,6 @@ def min_window(string1, string2):
     return mn
 
 
-s1 = "geeksgforgeeks"
+s1 = "geekgforgeeks"
 s2 = "gks"
 print(min_window(s1, s2))
