@@ -1,4 +1,5 @@
-The key concept of python is objects. Almost everything in python is an object, which includes functions and as well as classes. As a result, functions and classes can be passed as arguments, can exist as an instance, and so on. Above all, the concept of objects let the classes in generating other classes.
+The key concept of python is objects. Almost everything in python is an object, which includes functions and as well as classes. 
+As a result, functions and classes can be passed as arguments, can exist as an instance, and so on. Above all, the concept of objects let the classes in generating other classes.
 
 The classes that generate other classes are defined as metaclasses
 In python 3 all the classes declared using keyowrd "class" are object of meta class "type"
@@ -166,7 +167,7 @@ Traceback (most recent call last):
     return super(Mymetaclass,cls).__new__(cls,clsname,superclasses,atributedict)
 TypeError: super(type, obj): obj must be an instance or subtype of type
 
-This is because Python can only have one metaclass for a class. Here, class C can’t inherit from two metaclasses, which results in ambiguity.
+This is because Python can only have one metaclass for a class. Here, class C canâ€™t inherit from two metaclasses, which results in ambiguity.
 
 Usecases of metaclass:
 1. Dynamic class creation
@@ -212,7 +213,7 @@ Chandra
 90
 
 2. Class Verification
-If you need to design a class that agrees to a particular interface, then a metaclass is the right solution. We can consider a sample code where a class requires either one of the attributes to be set. Let’s go through the code.
+If you need to design a class that agrees to a particular interface, then a metaclass is the right solution. We can consider a sample code where a class requires either one of the attributes to be set. Letâ€™s go through the code.
 
 
 class MainClass(type):
