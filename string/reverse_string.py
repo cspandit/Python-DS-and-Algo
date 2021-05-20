@@ -27,4 +27,4 @@ def reverse_string_recur(string, res):
 
 
 s = "my name is alex"
-print(reverse_string_recur(s, ""))
+print(reverse_string_sen(s))
