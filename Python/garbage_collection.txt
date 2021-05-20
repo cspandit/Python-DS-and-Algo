@@ -1,6 +1,6 @@
 There are two aspect of garbage memory management in python:
 1. Reference count 
-2. Garbage collection
+2. Generational Garbage collection
 
 Reference Count: 
 The main garbage collection mechanism in CPython is through reference counts. Whenever you create an object inPython, the underlying C object has both a Python type (such as list, dict, or function) and a reference count.

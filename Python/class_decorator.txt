@@ -1,4 +1,4 @@
-Like class decorator decorated function type not "Function" rather it is of type <Class_Decorrator> type
+Class decorator of type <Class_Decorrator>
 
 #Example: class decorator to calculate execution time of a function
 
