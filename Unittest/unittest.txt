@@ -1,0 +1,36 @@
+The unittest frameworks supports the following concepts:
+
+Test Fixture – A fixture is what is used to setup a test so it can be run and also tears down when the test is finished.
+For example, you might need to create a temporary database before the test can be run and
+destroy it once the test finishes.
+
+Test Case – The test case is your actual test. It will typically check (or assert) that a specific response comes
+from a specific set of inputs. The unittest frameworks provides a base class called **TestCase**
+that you can use to create new test cases.
+
+Test Suite – The test suite is a collection of test cases, test suites or both.
+
+Test Runner – A runner is what controls or orchestrates the running of the tests or suites.
+It will also provide the outcome to the user (i.e. did they pass or fail).
+A runner can use a graphical user interface or be a simple text interface.
+
+###################################################################
+
+Below is unittest success report:
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+OK
+
+Three period denotes all three test case passed.
+adding -v in command line gives extra clearity in output:
+C:\Python-DS-and-Algo\Unittest>python test_my_math.py -v
+test_add_float (__main__.TestAdd) ... ok
+test_add_int (__main__.TestAdd) ... ok
+test_add_string (__main__.TestAdd) ... ok
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+OK
+
+Creating test suite :
+

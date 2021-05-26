@@ -3,11 +3,11 @@ def first_char(string):
     for c in string:
         count[ord(c)] += 1
 
-    index = 0
+    # index = 0
     for x in string:
         if count[ord(x)] == 1:
-            return string[index]
-        index += 1
+            return x
+        #index += 1
 
 
 print(first_char('swiss'))
