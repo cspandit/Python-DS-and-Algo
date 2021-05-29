@@ -14,5 +14,5 @@ def permute(string, l, h):
             string[l], string[i] = string[i], string[l]  # so that for other choices string remain unchanged
 
 
-s = "ABB"
+s = "ABC"
 permute(list(s), 0, len(s)-1)
