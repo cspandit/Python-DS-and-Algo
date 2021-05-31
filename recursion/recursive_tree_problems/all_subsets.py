@@ -1,4 +1,4 @@
-# This problem can be approached by designing recurssive tree
+# This problem can be approached by designing recursive tree
 
 #                                        op:"":ip:"ab"
 #                                          /         \

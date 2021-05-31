@@ -13,7 +13,6 @@ def rotation_number(array):
     n = len(array)
     high = n - 1
 
-
     while low <= high:
         if array[low] < array[high]:
             return low

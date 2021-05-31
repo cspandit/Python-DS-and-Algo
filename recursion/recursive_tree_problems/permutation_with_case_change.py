@@ -1,4 +1,6 @@
-# input = "ab"  output = ["AB", Ab, aB_C, ab]
+# permutation word in problem is misleading. As we are not actually calculating permutation.
+# This is just subset problem where we have two choices : upper and lower
+# input = "ab"  output = ["AB", Ab, aB, ab]
 # This is input-output problem and can be solved by drawing recursive tree. Check all_subsets problem for recursive tree
 # So here choices are that each character either can be upper case or lower case
 

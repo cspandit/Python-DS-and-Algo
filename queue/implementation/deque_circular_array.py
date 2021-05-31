@@ -1,4 +1,4 @@
-# There are 4 methods:
+aweaA# There are 4 methods:
 # Lets assume at start front = rear = -1 and for first insert both front and rear is at index 0
 # 1. insertFront() -> pointer moves in backward direction. Make sure when front is at index 0 then for next insert it
                         # point to n-1(if front==0: front=n-1 )

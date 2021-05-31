@@ -34,6 +34,7 @@ def postorder_recursive(temp):
         else:
             x = stack.pop()
             if x.right and x.right not in visited:
+                visited.add(x)
                 # parent node is required after right node is processed
                 stack.append(x)
                 node = x.right

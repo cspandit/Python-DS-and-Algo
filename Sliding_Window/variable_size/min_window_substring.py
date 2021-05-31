@@ -1,4 +1,4 @@
-# problem is two find the min size window in string 1 will contain all the characters for string 2
+# problem is to find the min size window in string 1 will contain all the characters for string 2
 
 
 from collections import defaultdict
