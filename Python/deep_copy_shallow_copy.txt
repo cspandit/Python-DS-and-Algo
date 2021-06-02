@@ -1,5 +1,6 @@
 In python user thinks that = operator create new object but that is not the case.
-Equal operator only create new varaibale which share reference to new object. We have to be very carefull when we are dealing with mutable objects like list in this case
+Equal operator only create new varaibale which share reference to new object.
+We have to be very carefull when we are dealing with mutable objects like list in this case
 
 x = [1,2,3]
 y = x
@@ -12,8 +13,10 @@ Any changes made in list y is reflected in x.
 python copy module provide mechanism to copy muatble objects
 
 1. copy.copy() - > shallow copy: 
-A shallow copy means constructing a new collection object and then populating it with references to the child objects found in the original. The copying process does not recurse and therefore won’t create copies of the child objects themselves.
-A shallow copy constructs a new compound object and then (to the extent possible) inserts references into it to the objects found in the original.
+A shallow copy means constructing a new collection object and then populating it with references to the child objects
+found in the original. The copying process does not recurse and therefore wonï¿½t create copies of the child objects themselves.
+A shallow copy constructs a new compound object and then (to the extent possible) inserts references into it to the
+objects found in the original.
 Example:
 
 import copy
@@ -31,7 +34,9 @@ B :- [1,2,[,3,4,5],6]
 Only chages made to member is reflected in A.
 
 2. copy.deepcopy() - > deep copy
-Deep copy is a process in which the copying process occurs recursively. It means first constructing a new collection object and then recursively populating it with copies of the child objects found in the original. In case of deep copy, a copy of object is copied in other object
+Deep copy is a process in which the copying process occurs recursively. It means first constructing a new collection
+object and then recursively populating it with copies of the child objects found in the original. In case of deep copy,
+a copy of object is copied in other object
 A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
 Example:
 A = [1,2,[3,4]]

@@ -1,5 +1,6 @@
 The key concept of python is objects. Almost everything in python is an object, which includes functions and as well as classes. 
-As a result, functions and classes can be passed as arguments, can exist as an instance, and so on. Above all, the concept of objects let the classes in generating other classes.
+As a result, functions and classes can be passed as arguments, can exist as an instance, and so on. Above all,
+the concept of objects let the classes in generating other classes.
 
 The classes that generate other classes are defined as metaclasses
 In python 3 all the classes declared using keyowrd "class" are object of meta class "type"
@@ -57,12 +58,15 @@ s = Student("Chandra",89)
 s.getName()
 s.getID()
 
-"class A(object):" this is new style declaration. However in python3 it is changed to simple syntax "class A:" But instantiate with "type" it is required.
+"class A(object):" this is new style declaration. However in python3 it is changed to simple syntax "class A:"
+But instantiate with "type" it is required.
 Python3 syntax of overiding parent class __init__ method (super().__init__(name)) does not work here. Need to pass args to super()
 We can't use super() without arguments in a function defined outside of a class.
 
 Writing Metaclasses:
-Metaclasses are classes that inherit directly from type. The method that custom metaclasses should implement is the __new__ method. The arguments mentioned in the __new__  method of metaclasses reflects in the __new__ method of type class. It has four positional arguments. They are as follows:
+Metaclasses are classes that inherit directly from type. The method that custom metaclasses should implement is the __new__ method.
+The arguments mentioned in the __new__  method of metaclasses reflects in the __new__ method of type class. It has four positional arguments.
+They are as follows:
 
 The first argument is the metaclass itself.
 The second argument is the class name.
