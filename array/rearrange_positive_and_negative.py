@@ -75,6 +75,7 @@ def reaarange_eff(array):
 	while n_index+1 != p_index:
 		array[n_index+1], array[p_index] = array[p_index], array[n_index+1]
 		n_index += 2
+		p_index += 1
 
 A = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
 

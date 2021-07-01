@@ -33,7 +33,7 @@ class Derived(Base):
 obj1 = Derived()
          
 obj2 = Base()
-print(obj2._2)
+print(obj2._a)
 
 Output:
 Calling protected member of base class: 

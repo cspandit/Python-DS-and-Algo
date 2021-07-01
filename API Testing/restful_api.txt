@@ -1,0 +1,91 @@
+REST - Representational state transfer protocol
+- It has 6 constraint, if we implement a web service using all these constraint we end up having a REST web service/API
+- REST use HTTP protocol - Four verbs: GET, POST, PUT, DELETE
+
+NEED FOR REST:
+1. Client server architecture: Both client and server can grow independently. Thus it helps build loosely coupled
+    applications
+2. REST is platform independent.
+3. Flexibility/scalability
+4. REST is not constraint to one data format response. It provide option like xml and json
+5. As REST use HTTP protocol it has advantage of HTTP cache
+5. Discoverability-> HATEOS
+
+*************************************************************************************
+Web service can be SOAP or RESTFUL : Generally SOAP services are reefer as  web service
+Web API is technology offered by microsoft to build restful API
+*************************************************************************************
+
+- Only one URL is used for all the different types of request.
+    api/product/1 - this is correct
+    api/getProduct/1 - this is incorrect
+
+REST CONSTRAINT:
+1. Client-server :
+This is the most fundamental requirement of a REST based architecture. It means that the server will have a RESTful web
+service which would provide the required functionality to the client. The client send's a request to the web service on
+the server. The server would either reject the request or comply and provide an adequate response to the client.
+
+2. Stateless:
+Server does not store any data/state of the clients. It just understand request and send the response.
+All the information to understand the request must be contained in the request.It's a very simple independent
+question-answer sequence. The client asks a question, the server answers it appropriately. The client will ask another
+question. The server will not remember the previous question-answer scenario and will need to answer the new question
+independently.
+
+3. Cache:
+The Cache concept is to help with the problem of stateless which was described in the last point.
+Since each server client request is independent in nature, sometimes the client might ask the server for the same
+request again. This is even though it had already asked for it in the past. This request will go to the server,
+and the server will give a response. This increases the traffic across the network. The cache is a concept implemented
+on the client to store requests which have already been sent to the server. So if the same request is given by
+the client, instead of going to the server, it would go to the cache and get the required information.
+This saves the amount of to and fro network traffic from the client to the server.
+
+4. Uniform interface:
+This is the key differentiators between rest and non rest api. Same API can be accessed from different device say mobile
+or laptops. This uniform interface insure that APIs are always accessed in similar fashion.
+This promotes generality as all the components interact in the same way.
+There are four element of uniform interface:
+    1. Identification of resource(typically by an url)
+    2. Manipulation of resource through representation(json is nothing but representation of actual object).
+        clients can change resources using such representation and with help of HTTP methods:
+        POST - To create a resource on the server
+        GET - To retrieve a resource from the server
+        PUT - To change the state of a resource or to update it
+        DELETE - To remove or delete a resource from the server
+    3. self descriptive message for each request
+    4. HATEOS - > Hypermedia As The Engine of application state: This means including extra links in the response so
+                that client can understand resources very easily.
+
+5. Layered system:
+This allows architecture to be composed of hierarchical  layers where each layer only communicates with next layer.
+This limit the amount of complexity that can be introduced at any single layer. Here disadvantage is latency.
+MVC(Module-View-Controller) is fine example of layered system, where module only deal with database, view deal with
+how output should look and controller deals with all the action taken as per request.
+
+6. Code on demand:
+In addition to data, the servers can provide executable code to the client.
+This constraint is optional and pose security threat.
+
+
+Richardspn Maturity Model: It grades API by their restful maturity.
+They are leveled from 0 to 3
+
+level 0:
+- plain old xml
+- use http just for remote interaction. Used as transport protocol. Does not take advantage of http method and cache
+- Use only one url and use only on http method(post)
+
+level 1:
+- Each response is mapped to separate uri.
+- It still uses only one http method(post)
+
+level 2:
+- correct http verbs are mapped to seperate uri
+- correct response code is mapped
+
+level 3:
+-level 2+ HATEAOS(json response + hypermedia)
+
+

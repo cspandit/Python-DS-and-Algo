@@ -8,23 +8,26 @@ def check_key(array, x, k, n):
         if i + k < n:
             j = 0
             while j < k:
-                if array[i+j] == x:
+                if arr[i + j] == x:
                     break
                 j += 1
             if j == k:
                 return False
-        i = i+k
+            i = i + k
+        else:
+            break
     if i == n:
         return True
-    j = i - k
-    while j < n:
-        if array[j] == x:
+    k = n - i
+    j = 0
+    while j < k:
+        if arr[i + j] == x:
             break
         j += 1
-
-    if j == n:
+    if j == k:
         return False
-    return True
+    else:
+        return True
 
 
 A = arr = [3, 5, 2, 4, 9, 3, 1, 7, 3, 11, 12, 3, 0, 3]

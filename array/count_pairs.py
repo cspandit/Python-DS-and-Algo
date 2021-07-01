@@ -31,7 +31,24 @@ def count_pairs_map(arr, sm):
 
     return twice_count//2
 
+# Complexity : O(nlogn) : Without extra space
+def count_pairs_eff(arr, sm):
+    arr.sort()
+    l = 0
+    h = len(arr)-1
+    count = 0
+    while l < h:
+        if arr[l] + arr[h] == sm:
+            count += 1
+            l += 1
+            h -= 1
+        elif arr[l] + arr[h] < sm:
+            l += 1
+        else:
+            h -= 1
+    return count
+
 
 A = [1, 5, 7, -1, 3]
-print(count_pairs_map(A, 6))
+print(count_pairs_eff(A, 6))
 

@@ -7,7 +7,8 @@ def my_suite():
     suite.addTest(unittest.makeSuite(TestAdd))
     suite.addTest(unittest.makeSuite(TestSub))
     runner = unittest.TextTestRunner()
-    print(runner.run(suite))
+    summary = runner.run(suite)
+    print(summary)
 
 
 my_suite()

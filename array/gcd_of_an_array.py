@@ -16,7 +16,7 @@ def gcd_array(array, qs, qe):
     l = array[qs]
     r = array[qs+1]
     gcd = find_gcd(l, r)
-    for j in range(2, qe+1):
+    for j in range(qs+2, qe+1):
         gcd = find_gcd(gcd, array[j])
 
     print(gcd)

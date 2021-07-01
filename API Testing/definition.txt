@@ -1,0 +1,33 @@
+APIs, or Application Programming Interfaces, are the connecting tissue between different systems or layers of an application.
+Applications often have three layers: a data layer, a service (API) layer, and a presentation (UI) layer.
+The API layer contains the business logic of an application - the rules of how users can interact with services, data, or functions of the app.
+Because the API or service layer directly touches both the data layer and the presentation layer,
+it presents the sweet spot of continuous testing for QA and Development teams. While traditional testing has been focused on the UI,
+the advantages of API testing are becoming well known.
+
+While there are many aspects of API testing, it generally consists of make requests to a single or sometimes multiple
+API endpoints and validate the response - whether for performance, security, functional correctness,
+or just a status check. While UI testing may focus on validating the look and feel of a web interface or that
+a particular payment button works - API testing puts much more emphasis on the testing of business logic, data responses
+and security, and performance bottlenecks.
+
+The Benefits of API Testing
+Earlier Testing -
+With API testing, once the logic is designed, tests can be built to validate the correctness in responses and data.
+We don't have to wait for various teams to finish their work or for full applications to be built
+- test cases are isolated and ready to built immediately.
+
+Easier Test Maintenance -
+UIs are constantly changing and moving around based on how they are accessed - browsers, devices, screen orientation, etc.
+This creates a nightmare scenario where tests are being constantly rewritten to keep up with the actual code in production.
+API changes are much more controlled and infrequent - often times API definitions files like OpenAPI Spec can help make
+refactoring tests only a seconds of work.
+
+Faster Time To Resolution -
+When API tests fail, we know exactly where our system broke and where the defect can be found.
+This helps reduce time triaging bugs between builds, integrations, and even different team-members.
+The small, isolated footprint of an API test is perfect for faster MTTR stats, a valuable KPI for DevOps teams.
+
+Speed and Coverage of Testing -
+300 UI tests may take 30 hours to run. 300 API tests could be run in 3 minutes.
+That means you’ll find more bugs in less time, while also being about to fix them immediately.

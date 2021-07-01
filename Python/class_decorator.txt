@@ -21,7 +21,7 @@ class CDecorator:
 @CDecorator
 def my_fun(delay):
     print("I am going to sleep \n")
-    spleep(delay)
+    sleep(delay)
     print("I am awake")
     
     

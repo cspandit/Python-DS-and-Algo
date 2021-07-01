@@ -1,4 +1,4 @@
-# Write an efficient program to find the sum of contiguous subarray within a one-dimensional array of numbers that has
+# Write an efficient program to find the sum of contiguous sub array within a one-dimensional array of numbers that has
 # the largest sum.
 
 # Brute force: find all the sub array and look for max sum

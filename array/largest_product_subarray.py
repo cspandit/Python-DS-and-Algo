@@ -1,4 +1,4 @@
-# Given an array that contains both positive and negative integers, find the product of the maximum product subarray
+# Given an array that contains both positive and negative integers, find the product of the maximum product sub array
 # Input: arr[] = {6, -3, -10, 0, 2}
 # Output:   180  // The subarray is {6, -3, -10}
 #
@@ -28,5 +28,5 @@ def largest_product_kadane(array):
     return max_so_far
 
 
-A = [0, 0, 1, 0]
+A = [-2, -3, 4, -1, -2, 1, 5, -3]
 print(largest_product_kadane(A))

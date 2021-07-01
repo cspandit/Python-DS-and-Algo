@@ -1,11 +1,24 @@
 Operator Overloading in Python:
-Operator Overloading means giving extended meaning beyond their predefined operational meaning. For example operator + is used to add two integers as well as join two strings and merge two lists. It is achievable because ‘+’ operator is overloaded by int class and str class. You might have noticed that the same built-in operator or function shows different behavior for objects of different classes, this is called Operator Overloading. 
+Operator Overloading means giving extended meaning beyond their predefined operational meaning.
+For example operator + is used to add two integers as well as join two strings and merge two lists.
+It is achievable because ‘+’ operator is overloaded by int class and str class.
+You might have noticed that the same built-in operator or function shows different behavior for
+objects of different classes, this is called Operator Overloading.
 
 How to overload the operators in Python? 
-Consider that we have two objects which are a physical representation of a class (user-defined data type) and we have to add two objects with binary ‘+’ operator it throws an error, because compiler don’t know how to add two objects. So we define a method for an operator and that process is called operator overloading. We can overload all existing operators but we can’t create a new operator. To perform operator overloading, Python provides some special function or magic function that is automatically invoked when it is associated with that particular operator. For example, when we use + operator, the magic method __add__ is automatically invoked in which the operation for + operator is defined.
+Consider that we have two objects which are a physical representation of a class (user-defined data type) and we have to
+add two objects with binary ‘+’ operator it throws an error, because compiler don’t know how to add two objects. So we
+define a method for an operator and that process is called operator overloading. We can overload all existing
+operators but we can’t create a new operator. To perform operator overloading, Python provides some special function
+or magic function that is automatically invoked when it is associated with that particular operator. For example,
+when we use + operator, the magic method __add__ is automatically invoked in which the operation for + operator is defined.
 
 Overloading binary + operator in Python : 
-When we use an operator on user defined data types then automatically a special function or magic function associated with that operator is invoked. Changing the behavior of operator is as simple as changing the behavior of method or function. You define methods in your class and operators work according to that behavior defined in methods. When we use + operator, the magic method __add__ is automatically invoked in which the operation for + operator is defined. There by changing this magic method’s code, we can give extra meaning to the + operator. 
+When we use an operator on user defined data types then automatically a special function or magic function associated
+with that operator is invoked. Changing the behavior of operator is as simple as changing the behavior of method or function.
+You define methods in your class and operators work according to that behavior defined in methods. When we use + operator,
+the magic method __add__ is automatically invoked in which the operation for + operator is defined.
+There by changing this magic method’s code, we can give extra meaning to the + operator.
 
 Case1 :
 class Test:

@@ -60,7 +60,7 @@ s.getID()
 
 "class A(object):" this is new style declaration. However in python3 it is changed to simple syntax "class A:"
 But instantiate with "type" it is required.
-Python3 syntax of overiding parent class __init__ method (super().__init__(name)) does not work here. Need to pass args to super()
+Python3 syntax of overriding parent class __init__ method (super().__init__(name)) does not work here. Need to pass args to super()
 We can't use super() without arguments in a function defined outside of a class.
 
 Writing Metaclasses:
