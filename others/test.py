@@ -1,15 +1,13 @@
 def multiply(A, B):
     m = len(A)
     n = len(B[0])
-    C = [[0 for x in range(2)] for y in range(2)]
-
+    res = [[0 for x in range(n)] for y in range(n)]
+    print(res)
     for i in range(m):
         for j in range(n):
             for k in range(len(B)):
-                C[i][j] += A[i][k] * B[k][j]
-
-    print(C)
-
+                res[i][j] = res[i][j] + A[i][k]*B[k][j]
+    print(res)
 
 A = [[1, 2],
      [3, 4]]

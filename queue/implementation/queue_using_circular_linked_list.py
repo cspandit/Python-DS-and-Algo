@@ -1,46 +1,32 @@
 class Node:
-    def __init__(self, data):
+    def __init__(self, data, priority):
         self.data = data
+        self.priority = priority
         self.next = None
 
 
 class Queue:
     def __init__(self):
         self.front = None
-        self.rear = None
 
-    def __str__(self):
-        s = str(self.front.data)
-        temp = self.front.next
-        while temp != self.front:
-            s = s + "->" + str(temp.data) + "->"
-            temp = temp.next
-        s = s + "Front"
-        return s
-
-    def enqueue(self, data):
-        new_node = Node(data)
+    def enqueue(self, value, priority):
+        new_node = Node(value, priority)
         if self.front is None:
             self.front = new_node
-        else:
-            self.rear.next = new_node
-
-        self.rear = new_node
-        self.rear.next = self.front
-
-    def dequeue(self):
-        if self.front is None and self.rear is None:
             return
-        if self.rear is self.front:
-            temp = self.front
-            self.front = None
-            self.rear = None
-            return temp.data
-
+        if self.front.priority < priority:
+            new_node.next = self.front
+            self.front = new_node
         temp = self.front
-        self.front = temp.next
-        self.rear.next = self.front
-        return temp.data
+        while temp.next is not None and temp.next.priority > priority:
+            temp = temp.next
+        if temp.next is None:
+            temp.next = new_node
+        else:
+            new_node.next = temp.next
+            temp.next = new_node
+
+
 
 
 q = Queue()

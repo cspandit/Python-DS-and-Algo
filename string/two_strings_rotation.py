@@ -7,8 +7,6 @@
 
 # Complexity O(n^2)
 def is_substring(s1, s2):
-    i = 0
-    j = 0
     m = len(s1)
     n = len(s2)
     for i in range(m-n+1):

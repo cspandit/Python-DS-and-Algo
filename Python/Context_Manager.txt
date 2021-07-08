@@ -27,7 +27,8 @@ init method called
 enter method called
 with statement block
 exit method called
-In this case a ContextManager object is created. This is assigned to the variable after the as keyword i.e manager. On running the above program, the following get executed in sequence:
+In this case a ContextManager object is created. This is assigned to the variable after the as keyword i.e manager.
+On running the above program, the following get executed in sequence:
 
 __init__()
 __enter__()

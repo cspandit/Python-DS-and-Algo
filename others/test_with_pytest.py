@@ -80,7 +80,7 @@ def is_palindrome(string):
 def test_is_palindrome(palindrome):
     assert is_palindrome(palindrome)
 
-@pytest.mark.parametrize('not_palindrome',['ab', 'abab'])
+@pytest.mark.parametrize('not_palindrome', ['ab', 'abab'])
 def test_is_not_palindrome(not_palindrome):
     assert not is_palindrome(not_palindrome)
 
@@ -92,3 +92,9 @@ def test_is_not_palindrome(not_palindrome):
 ])
 def test_palindrome_combine(may_be_palindrome, expected_result):
     assert is_palindrome(may_be_palindrome) == expected_result
+
+
+# Coverage :
+# 1. Install coverage : pip install coverage
+# 2. Create coverage file for app : coverage run app.py
+# 3. Generate report : coverage-report

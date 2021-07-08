@@ -1,4 +1,4 @@
-Inheritate built-in class list to make Contact Application
+Inheritance built-in class list to make Contact Application
 Example of simple inheritance: 
 
 class ContactList(list):
@@ -37,7 +37,7 @@ class AddressHolder:
 
 # Multiple Inheritance 
 
-when overriding method with class name, object reference(self) should be used as first argument. This isthe most naive approach. It has below problem(Diamond Problem)
+when overriding method with class name, object reference(self) should be used as first argument. This is the most naive approach. It has below problem(Diamond Problem)
 
 class Friend(Contact, AddressHolder):
     def __init__(self, name, email, phone_no, country=None, city=None, village=None, ward=None):
@@ -64,8 +64,14 @@ Sending email to Nabin Chaudhary
 
          
 Diamond Problem:
-The __init__ method from the Friend class first calls __init__ on Contact which implicitly initializes the object superclass (remember, all classes derive from object). Friend then calls __init__ on AddressHolder, which implicitly initializes the object superclass... again. The parent class has been set up twice. In this case, that's relatively harmless, but in some situations, it could spell disaster. Imagine trying to connect to a database twice for every request! The base class should only be called once. Once, yes, but when? Do we call Friend then Contact then Object then AddressHolder? Or Friend then Contact then AddressHolder then Object?
-Technically, the order in which methods can be called can be adapted on the fly by modifying the __mro__(Method Resolution Order) attribute on the class.
+The __init__ method from the Friend class first calls __init__ on Contact which implicitly initializes the object
+superclass (remember, all classes derive from object). Friend then calls __init__ on AddressHolder, which implicitly
+initializes the object superclass... again. The parent class has been set up twice. In this case, that's relatively
+harmless, but in some situations, it could spell disaster. Imagine trying to connect to a database twice for every
+request! The base class should only be called once. Once, yes, but when? Do we call Friend then Contact then Object then
+AddressHolder? Or Friend then Contact then AddressHolder then Object?
+Technically, the order in which methods can be called can be adapted on the fly by modifying
+the __mro__(Method Resolution Order) attribute on the class.
 
 lets look below problem:        1
                                 class BaseClass:
@@ -100,7 +106,8 @@ Calling from RightClass
 Calling from Subclass
 print(s.num_sub_call, s.num_left_call, s.num_right_call, s.num_base_call)
 1 1 1 2
-The base class's call_me method has been called twice. This isn't expected behavior and can lead to some very difficult bugs if that method is doing actual work—like depositing into a bank account twice.
+The base class's call_me method has been called twice. This isn't expected behavior and can lead to some very difficult
+bugs if that method is doing actual work—like depositing into a bank account twice.
 
 using super:
 1
@@ -130,8 +137,10 @@ Calling from BaseClass
 Calling from RightClass
 Calling from LeftClass
 Calling from SubClass
-If we see the above example then the order of search for the attributes will be Derived, Base1, Base2, object.The order that is followed is known as a linearization of the class Derived and this order is found out using a set of rules. 
-But what we shuld notice here in particular that at 2nd call(leftClass ) calls __init__ method of RightClass which is not even its parent class.
+If we see the above example then the order of search for the attributes will be Derived, Base1, Base2, object.
+The order that is followed is known as a linearization of the class Derived and this order is found out using a set of rules.
+But what we should notice here in particular that at 2nd call(leftClass ) calls __init__ method of RightClass which is
+not even its parent class.
 
 Different sets of arguments:
 class Friend(Contact, AddressHolder):

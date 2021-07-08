@@ -15,7 +15,6 @@ def sub_string(s):
     sub_list = []
     n = len(s)
     for i in range(n):
-        sub = ""
         for j in range(i+1, n+1):
             sub_list.append(s[i:j])
     return sub_list

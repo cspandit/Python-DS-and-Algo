@@ -35,7 +35,7 @@ class LRUCache:
         prev = node.prev
         nex = node.next
         prev.next = nex
-        nex = prev
+        nex.prev = prev
 
     def remove_head(self):
         if self.head is None:

@@ -1,5 +1,5 @@
 In python user thinks that = operator create new object but that is not the case.
-Equal operator only create new varaibale which share reference to new object.
+Equal operator only create new variable which share reference to new object.
 We have to be very carefull when we are dealing with mutable objects like list in this case
 
 x = [1,2,3]

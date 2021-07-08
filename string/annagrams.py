@@ -20,6 +20,9 @@ def check_anagram(s1, s2):
 
 # using map
 def check_anagram_map(s1, s2):
+    if len(s1) != len(s2):
+        return False
+
     d = defaultdict(int)
     count = 0
     for c in s1:

@@ -3,6 +3,7 @@ import math
 def print_z(n):
     while n % math.sqrt(n) != 0:
         n += 1
+    print(n)
     m = int(math.sqrt(n))
     print(m)
     count = 1
