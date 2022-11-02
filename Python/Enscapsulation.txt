@@ -43,7 +43,7 @@ Calling protected member of base class:
 
 Private Members:
 Private members are similar to protected members, the difference is that the class members declared private should
-neither be accessed outside the class nor by any base class. In Python, there is no existence of Private instance
+neither be accessed outside the class nor by any subclass. In Python, there is no existence of Private instance
 variables that cannot be accessed except inside a class.
 To define a private member prefix the member name with double underscore “__”.
 Again this is just convention to tell that this member is supposed to accessed only inside class.
