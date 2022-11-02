@@ -1,0 +1,88 @@
+Istall: pip install pytest (set the environment variable for python scripts)
+launch command : pytest / pytest <test_file.py>
+
+output indication : 
+A dot (.) means that the test passed.
+An F means that the test has failed.
+An E means that the test raised an unexpected exception.
+
+Advantage of pytest :
+1. Less boilerplate 
+2. Nicer output
+3. Less to learn
+4. Easier to Manage State and Dependencies :
+    - pytest fixtures 
+
+To solve the problem of implicit dependency for test functions 4, pytest provides with fixtures
+
+pytest fixtures are functions that can create data, test doubles, or initialize system state for the test suite. Any test that wants to use a fixture must explicitly use this fixture function as an argument to the test function, so dependencies are always stated up front:
+
+    Example : fixture_demo.py
+
+
+If you want to make a fixture available for your whole project without having to import it, a special configuration module called conftest.py will allow you to do that.
+
+pytest looks for a conftest.py module in each directory. If you add your general-purpose fixtures to the conftest.py module, then you’ll be able to use that fixture throughout the module’s parent directory and in any subdirectories without having to import it. This is a great place to put your most widely used fixtures.
+
+Marks: Categorizing Tests:
+ How to mark - @pytest.mark.<marker_name>
+ How to run -  pytest -m <marker_name>
+
+pytest provides a few marks out of the box:
+
+    skip : skips a test unconditionally.
+    skipif:  skips a test if the expression passed to it evaluates to True.
+    xfail:  indicates that a test is expected to fail, so if the test does fail, the overall suite can still result in a passing status.
+    parametrize : creates multiple variants of a test with different values as arguments. 
+
+PARAMETRIZATION : 
+ - its useful when we have multiple input with slight difference in input and expected output
+ Below are the test method to test is_palindrome() method:
+ def test_is_palindrome_empty_string():
+    assert is_palindrome("")
+
+def test_is_palindrome_single_character():
+    assert is_palindrome("a")
+
+def test_is_palindrome_mixed_casing():
+    assert is_palindrome("Bob")
+
+def test_is_palindrome_with_spaces():
+    assert is_palindrome("Never odd or even")
+
+def test_is_palindrome_with_punctuation():
+    assert is_palindrome("Do geese see God?")
+
+def test_is_palindrome_not_palindrome():
+    assert not is_palindrome("abc")
+
+def test_is_palindrome_not_quite():
+    assert not is_palindrome("abab")
+
+- -> This looks like boilerplate as all the test case except last is of similar kind with slight difference in input.
+     Lets use to pytest.mark.parametrize to overcome it 
+
+     @pytest.mark.parameterize('palindrome', [
+        "",
+        "a",
+        "Bob",
+        "Never odd or even",
+        "Do geese see God?",
+    ])
+
+    def test_is_palindrome(palindrome):
+        assert is_palindrome(palindrome)
+
+    @pytest.mark.parametrize('non-palindrome', [
+        "abc",
+        "abab",
+    ])
+
+    def test_is_not_palindrome(non-palindrome):
+        assert is_palindrome(non-palindrome)
+
+-- > Combining into one:
+
+    @pytest.mark.parametrize('maybe_palindrome', 'expected_results', [
+        
+    ])
