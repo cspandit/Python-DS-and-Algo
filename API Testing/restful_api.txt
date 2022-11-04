@@ -27,7 +27,7 @@ service which would provide the required functionality to the client. The client
 the server. The server would either reject the request or comply and provide an adequate response to the client.
 
 2. Stateless:
-Server does not store any data/state of the clients. It just understand request and send the response.
+Server does not store any data/state of the clients. It just understands request and send the response.
 All the information to understand the request must be contained in the request.It's a very simple independent
 question-answer sequence. The client asks a question, the server answers it appropriately. The client will ask another
 question. The server will not remember the previous question-answer scenario and will need to answer the new question
@@ -44,7 +44,7 @@ This saves the amount of to and fro network traffic from the client to the serve
 
 4. Uniform interface:
 This is the key differentiators between rest and non rest api. Same API can be accessed from different device say mobile
-or laptops. This uniform interface insure that APIs are always accessed in similar fashion.
+or laptops. This uniform interface ensure that APIs are always accessed in similar fashion.
 This promotes generality as all the components interact in the same way.
 There are four element of uniform interface:
     1. Identification of resource(typically by an url)

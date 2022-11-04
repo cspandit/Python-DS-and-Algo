@@ -7,15 +7,15 @@ The main garbage collection mechanism in CPython is through reference counts. Wh
 the underlying C object has both a Python type (such as list, dict, or function) and a reference count.
 
 At a very basic level, a Python object’s reference count is incremented whenever the object is referenced,
-andit’s decremented when an object is dereferenced.
+and it’s decremented when an object is dereferenced.
 If an object’s reference count is 0, the memory for the object is deallocated.
 
 Your program’s code can’t disable Python’s reference counting.
-This is in contrast to the generational garbagecollector discussed below.
+This is in contrast to the generational garbage collector discussed below.
 
-Some people claim reference counting is a poor man’s garbage collector. It does have some downsides, includingan
+Some people claim reference counting is a poor man’s garbage collector. It does have some downsides, including an
 inability to detect cyclic references as discussed below.
-However, reference counting is nice because you canimmediately remove an object when it has no references.
+However, reference counting is nice because you can immediately remove an object when it has no references.
 
 Viewing refrence count in python:
 >>> import sys
@@ -28,7 +28,8 @@ pass the variable a to the sys.getrefcount() function.
 ************************************************************************************************************
 
 Generational garbage collection:
-In addition to the reference counting strategy for memory management, Python also uses a method called a generational garbage collector.
+In addition to the reference counting strategy for memory management, Python also uses a method called a
+generational garbage collector.
 
 >>> class MyClass(object):
 ...     pass
@@ -82,7 +83,8 @@ You can check the number of objects in each of your generations with the get_cou
 >>> import gc
 >>> gc.get_count()
 (596, 2, 1)
-In this example, we have 596 objects in our youngest generation, two objects in the next generation, and one object in the oldest generation.
+In this example, we have 596 objects in our youngest generation, two objects in the next generation, and one object in
+the oldest generation.
 
 As you can see, Python creates a number of objects by default before you even start executing your program.
 You can trigger a manual garbage collection process by using the gc.collect() method:
@@ -93,7 +95,8 @@ You can trigger a manual garbage collection process by using the gc.collect() me
 57
 >>> gc.get_count()
 (18, 0, 0)
-Running a garbage collection process cleans up a huge amount of objects—577 in the first generation and three more in the older generations.
+Running a garbage collection process cleans up a huge amount of objects—577 in the first generation and three more in
+the older generations.
 
 You can alter the thresholds for triggering garbage collection by using the set_threshold() method in the gc module:
 

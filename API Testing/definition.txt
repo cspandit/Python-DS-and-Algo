@@ -1,6 +1,21 @@
+what is web services ?
+ - A piece of software which is makes itself available for internet. It is set of protocols or standards to exchange
+ data between applications or system. The exchange of data particularly happens in xml/json format. The important aspect
+ of web services is to provide a service not necessarily UI for Humans. It is mostly for applications or systems.
+ - Example : Retrieving information about product on Amazon.
+             Placing and order on Amazon
+ - Types of web services :
+   1. SOAP(Simple Object Access Protocols) API : It works on any internet protocols(like http). And it only supports xml
+        As it sends envelope to services providers it requires extra bandwidth. It uses user defined status code unlike
+        http standard response code in case of REST
+
+   2. REST(Representational State Transfer) API
+
+
 APIs, or Application Programming Interfaces, are the connecting tissue between different systems or layers of an application.
 Applications often have three layers: a data layer, a service (API) layer, and a presentation (UI) layer.
-The API layer contains the business logic of an application - the rules of how users can interact with services, data, or functions of the app.
+The API layer contains the business logic of an application - the rules of how users can interact with services, data,
+or functions of the app.
 Because the API or service layer directly touches both the data layer and the presentation layer,
 it presents the sweet spot of continuous testing for QA and Development teams. While traditional testing has been focused on the UI,
 the advantages of API testing are becoming well known.
@@ -31,3 +46,4 @@ The small, isolated footprint of an API test is perfect for faster MTTR stats, a
 Speed and Coverage of Testing -
 300 UI tests may take 30 hours to run. 300 API tests could be run in 3 minutes.
 That means you’ll find more bugs in less time, while also being about to fix them immediately.
+
