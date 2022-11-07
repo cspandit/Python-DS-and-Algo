@@ -65,6 +65,7 @@ def mergesort(array):
 def reaarange_eff(array):
 	mergesort(array)
 	n = len(array)
+	print(array)
 	i = 0
 	n_count = 0
 	for i in range(n):
@@ -79,6 +80,6 @@ def reaarange_eff(array):
 
 A = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
 
-
-reaarange_eff(A)
+print(A)
+rearrange(A)
 print(A)

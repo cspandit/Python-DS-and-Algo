@@ -1,3 +1,13 @@
+def largest_sub_brute_force(arr, k, n):
+    max_sub = 0
+    for i in range(n):
+        for j in range(n):
+            sm = sum(arr[i:j+1])
+            if sm == k:
+                max_sub = max(max_sub, j-i+1)
+    return max_sub
+
+
 def largest_sub(array, k, n):
     max_size = -1
     start = 0

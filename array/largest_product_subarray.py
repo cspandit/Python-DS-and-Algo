@@ -14,6 +14,8 @@ def largest_product(array):
         for j in range(i+1, n):
             max_product = max(prod, max_product)
             prod = prod*array[j]
+        # This will cover the case when multiplication by last item in array give max product
+        max_product = max(prod, max_product)
     return max_product
 
 def largest_product_kadane(array):
@@ -28,5 +30,5 @@ def largest_product_kadane(array):
     return max_so_far
 
 
-A = [-2, -3, 4, -1, -2, 1, 5, -3]
+A = [6, -3, -10, 0, 2]
 print(largest_product_kadane(A))

@@ -15,3 +15,7 @@ while j < n:
             remove calculation
             i++
         j++
+
+Question sequence variable sized :
+1. largest sub array of sum k
+2.

@@ -15,3 +15,12 @@ while j < n:
         remove calculation for A[i] if needed
         i++
 return ans
+
+Question sequence fixed size:
+1. Max_sum_array
+2. 1st_negative_integer
+3. anagrams count
+4. max_in_sub_array
+
+
+

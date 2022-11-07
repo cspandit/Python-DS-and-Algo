@@ -1,6 +1,18 @@
 from collections import defaultdict
 
 
+def largest_sub_brute_force(s, n):
+    max_sub = 0
+    for i in range(n):
+        d = defaultdict(int)
+        for j in range(n):
+            temp = s[i:j+1]
+            for x in temp:
+                d[x] += 1
+            if len(d) == len(temp):
+                max_sub = max(max_sub, len(d))
+    return max_sub
+
 def largest_sub(string, n):
     start = 0
     end = 0

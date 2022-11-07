@@ -1,0 +1,331 @@
+SQL is Structured Query Language, which is a computer language for storing, manipulating and retrieving data stored in
+a relational database.
+SQL is the standard language for Relational Database System. All the Relational Database Management Systems (RDMS) like
+MySQL, MS Access, Oracle, Sybase, Informix, Postgres and SQL Server use SQL as their standard database language.
+
+The standard SQL commands to interact with relational databases are CREATE, SELECT, INSERT, UPDATE, DELETE and DROP.
+These commands can be classified into the following groups based on their nature −
+
+DDL - Data Definition Language
+CREATE : Creates a new table, a view of a table, or other object in the database.
+ALTER : Modifies an existing database object, such as a table.
+DROP : Deletes an entire table, a view of a table or other objects in the database.
+
+DML - Data Manipulation Language
+SELECT: Retrieves certain records from one or more tables.
+INSERT: Creates a record.
+UPDATE: Modifies records.
+DELETE: Deletes records.
+
+DCL - Data Control Language
+GRANT: Gives a privilege to user.
+REVOKE: Takes back privileges granted from user.
+
+What is a table?
+The data in an RDBMS is stored in database objects which are called as tables. This table is basically a collection of
+related data entries and it consists of numerous columns and rows.
+
+Remember, a table is the most common and simplest form of data storage in a relational database. The following program
+is an example of a CUSTOMERS table −
+
++----+----------+-----+-----------+----------+
+| ID | NAME     | AGE | ADDRESS   | SALARY   |
++----+----------+-----+-----------+----------+
+|  1 | Ramesh   |  32 | Ahmedabad |  2000.00 |
+|  2 | Khilan   |  25 | Delhi     |  1500.00 |
+|  3 | kaushik  |  23 | Kota      |  2000.00 |
+|  4 | Chaitali |  25 | Mumbai    |  6500.00 |
+|  5 | Hardik   |  27 | Bhopal    |  8500.00 |
+|  6 | Komal    |  22 | MP        |  4500.00 |
+|  7 | Muffy    |  24 | Indore    | 10000.00 |
++----+----------+-----+-----------+----------+
+
+What is field ?
+Every table is broken up into smaller entities called fields. The fields in the CUSTOMERS table consist of ID, NAME,
+AGE, ADDRESS and SALARY.
+
+What is Row Record?
+A record is also called as a row of data is each individual entry that exists in a table. For example, there are 7
+records in the above CUSTOMERS table.
+
+What is a column?
+A column is a vertical entity in a table that contains all information associated with a specific field in a table.
+
+SQL Constraints
+Constraints are the rules enforced on data columns on a table. These are used to limit the type of data that can go into
+a table. This ensures the accuracy and reliability of the data in the database.
+
+Constraints can either be column level or table level. Column level constraints are applied only to one column whereas,
+table level constraints are applied to the entire table.
+
+Following are some of the most commonly used constraints available in SQL −
+
+NOT NULL Constraint − Ensures that a column cannot have a NULL value.
+DEFAULT Constraint − Provides a default value for a column when none is specified.
+UNIQUE Constraint − Ensures that all the values in a column are different.
+PRIMARY Key − Uniquely identifies each row/record in a database table.
+FOREIGN Key − Uniquely identifies a row/record in any another database table.
+CHECK Constraint − The CHECK constraint ensures that all values in a column satisfy certain conditions.
+INDEX − Used to create and retrieve data from the database very quickly.
+
+Data Integrity
+The following categories of data integrity exist with each RDBMS −
+Entity Integrity − There are no duplicate rows in a table.
+Domain Integrity − Enforces valid entries for a given column by restricting the type, the format, or the range of values.
+Referential integrity − Rows cannot be deleted, which are used by other records.
+User-Defined Integrity − Enforces some specific business rules that do not fall into entity, domain or referential integrity.
+
+Database Normalization
+Database normalization is the process of efficiently organizing data in a database. There are two reasons of this normalization process −
+Eliminating redundant data, for example, storing the same data in more than one table.
+Ensuring data dependencies make sense.
+
+Both these reasons are worthy goals as they reduce the amount of space a database consumes and ensures that data is
+logically stored. Normalization consists of a series of guidelines that help guide you in creating a good database structure.
+Normalization guidelines are divided into normal forms; think of a form as the format or the way a database structure is
+laid out. The aim of normal forms is to organize the database structure, so that it complies with the rules of first
+normal form, then second normal form and finally the third normal form.
+
+It is your choice to take it further and go to the fourth normal form, fifth normal form and so on, but in general,
+the third normal form is more than enough.
+
+First Normal Form (1NF)
+Second Normal Form (2NF)
+Third Normal Form (3NF)
+
+What are ACID properties?
+
+ACID properties stands for Atomicity, Consistency, Isolation, Durability. ACID properties are followed by DBMS in
+transaction management. In order to ensure that the transaction is correct, the following things must be taken care:
+
+Atomicity :- This ensures that a transaction in done in atomic parts. Either it is completed or not. There is not partial
+state. However, a transaction may consist of sub-transactions, but for a transaction to achieve atomicty all the
+sub-transactions must be completed successfully. If any of them fails, rollback happens.
+
+Consistency - Imagine an amount Rs.500 to be transferred from one account to another. The steps followed are :
+Amount of Rs 500 will be deducted from account A.
+Amount of Rs. 500 will be added to account B.
+           If after step 1, the transaction is stopped due to some reasons. The database will be in-consistent, or it no
+           longer reflects the real state of the world. So the transaction must be not lead the database to in-consistent
+           state. The consistency here requires that the sum of A and B is unchanged after the transaction is completed.
+
+Isolation - In an system multiple transactions may execute concurrently but each transaction must be unaware of other
+transaction executing concurrently. This is achieved by conflict serializabiliity.
+
+Durability - After a transaction completes, the changes it has made to the database persist, evern if there are system failures.
+In real world system ,
+
+Atomicity is ensured by recovery systems.
+Consistency is ensured by application programmer who codes the transaction. This may be facilitated by automatic testing
+of integrity constraints.
+Isolation is ensured by database component called concurreny-control system.
+Durability is ensured by guarantee that either the updates carried out by the transaction have been written to disk
+before the transaction completes or by ensuring that the information about he updates carried out by the transaction and
+written to disk is sufficient to enable the databaes to reconstruct the updates when the database system is restarted
+after the failure
+------------------------
+Queries :
+To select all columns :
+Select * from <table_name>;
+------------------------------------
+To select given column:
+select column_name1, column_name2 from table_name;
+----------------------------------------------------------------
+The SQL SELECT DISTINCT Statement
+Inside a table, a column often contains many duplicate values; and sometimes you only want to list the different (distinct) values.
+
+select distinct column_name1, column_name2 from table_name;
+-----------------------------------------------------------------------
+Write queries to count distinct column value -
+select count(distinct column_name) from table_name;(With count header : SELECT COUNT(DISTINCT Country) as distict_count FROM Customers;)
+
+--------------------------------------------------------------------------------
+Where Clause :
+select * from table_name where condition - select all the columns if condition is matched
+select column_name1, column_name2 from table_name where condition
+Note: The WHERE clause is not only used in SELECT statements, it is also used in UPDATE, DELETE, etc.! Also condition
+can be paired with AND OR and NOT
+-------------------------------------------------------------------------------------------------
+Order By Clause
+The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order,
+use the DESC keyword.
+select * from Customers order by country - this will filter all the column from Customers table with country column being
+sorted in ascending order
+select * from Customers order by country desc - in descending order
+
+ORDER BY Several Columns Example
+The following SQL statement selects all customers from the "Customers" table, sorted by the "Country" and the
+"CustomerName" column. This means that it orders by Country, but if some rows have the same Country, it orders them
+by CustomerName:
+select * from Customer order by Country, CustomerName
+----------------------------------------------------------------------------------------------------
+Insert into clause
+when inserting only few column :
+insert into table_name (column1, column2) values (value1, value2); - for other column is inserted
+
+when inserting into all column
+insert into table_name values (value1, value2, value3 ...)
+---------------------------------------------------------------------------------
+Write a queries to filter out column value with null
+select * from table_name where column_name is null/ not null - cannot use = operator
+----------------------------------------------------------------------------------------
+Update Clause
+Update clause should always be used with where condition otherwise all the records can be updated
+
+update table_name set column1=value, column2=value where condition
+----------------------------------------------------------------------------------------------------
+delete clause
+delete from table_name - delete complete table
+delete from table_name where condition - only records for which condition matches is deleted
+-------------------------------------------------------------------------------------------------
+LIMIT
+
+select * from table_name where condition limit <number>;
+------------------------------------------------------------------------------------------------
+min() - return the smallest value of selected column
+select min(column_name) from table_name where condition;
+max() - return the largest value of selected column
+select max(column_name) as <specified_name> from table_name where condition;
+----------------------------------------------------------------------------------------
+SQL COUNT(), AVG() and SUM() Functions
+The COUNT() function returns the number of rows that matches a specified criterion.
+select sum(column_name) from table_name where condition
+select count(*) from table_name where condition - count all the rows that matches condition
+select avg(column_name) from table_name where condition
+select count(id) from table_name - count all the recods in the table
+----------------------------------------------------------------------------------------------
+Like Operator
+There are two wildcards often used in conjunction with the LIKE operator:
+ The percent sign (%) represents zero, one, or multiple characters
+ The underscore sign (_) represents one, single character
+
+ Wildcard characters are used with the LIKE operator. The LIKE operator is used in a WHERE clause to search for a
+ specified pattern in a column.
+
+*	Represents zero or more characters	bl* finds bl, black, blue, and blob
+?	Represents a single character	h?t finds hot, hat, and hit
+[]	Represents any single character within the brackets	h[oa]t finds hot and hat, but not hit
+!	Represents any character not in the brackets	h[!oa]t finds hit, but not hot and hat
+-	Represents any single character within the specified range	c[a-b]t finds cat and cbt
+#	Represents any single numeric character	2#5 finds 205, 215, 225, 235, 245, 255, 265, 275, 285, and 295
+
+
+ select * from table_name where column_name like 'a%'; - all record where column_name value start with a
+ select * from table_name where column_name like '[acs]%'; - start with a or c or s
+ select * from table_name where column_name like '_a%'; - second letter is a
+ select * from table_name where column_name like 'a__5' - start with a and at least 3 char length
+ select * from table_name where column_name like '[a-f]%'; - start with any letter a to f
+ select * from table_name where column_name like '[!acf]%' - not starting with a, c or f
+--------------------------------------------------------------------------------------------------------------
+SQL IN Operator
+select * from table_name where column_name in (value1, value2 value2);
+select column_name from table_name where column_name not in (value1, value2)
+select * from table_name1 where columnX in (select columnX from table_name2) - this will select all the records from
+table1 for all the value of columnX in table 2
+  - Select * from Customers where City in (select City from Suppliers)
+-------------------------------------------------------------------------------------
+BETWEEN OPERATOR
+The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates.
+The BETWEEN operator is inclusive: begin and end values are included.
+
+select * from table_name where id between 1 and 20; - 1 and 20 will be included
+select * from table_name where product_name not between 'text_value1' and 'text_value2' order by product_name desc;
+select * from table_name where price between 10 and 20 and id not in (1,4,5)
+select * from table_name where date between '10-10-2020' and '10-10-2022'
+----------------------------------------------------------------------------------------------------------------
+SQL aliases are used to give a table, or a column in a table, a temporary name.
+Aliases are often used to make column names more readable.
+An alias only exists for the duration of that query.
+An alias is created with the AS keyword.
+It requires double quotation marks or square brackets if the alias name contains spaces:
+
+select column_one as column1, column_two as [column two] from table_name;
+ - concatenating different column to create an alias
+ Example - select CustomerName, CONCAT(Address, postal_code, city, Country) as Address;
+
+ select o.OrderID, o.OrderName, c.CustomerName
+ from table Customers as c and Orders as o
+ where c.CustomerName='Chandra' and c.CustomerID = o.CustomerID
+
+_________________________________________________________________________________________________________--
+Inner join:
+The INNER JOIN keyword selects records that have matching values in both tables.
+select * from Customers INNER JOIN Orders on Customers.customerID=Orders.CustomerID;
+  - will select all the matching records from both table and Customer is lest table and Order is right table
+
+(INNER) JOIN: Returns records that have matching values in both tables
+LEFT (OUTER) JOIN: Returns all records from the left table, and the matched records from the right table
+RIGHT (OUTER) JOIN: Returns all records from the right table, and the matched records from the left table
+FULL (OUTER) JOIN: Returns all records when there is a match in either left or right table
+-----------------------------------------------------------------------------------------------------------
+The UNION operator is used to combine the result-set of two or more SELECT statements.
+
+Every SELECT statement within UNION must have the same number of columns
+The columns must also have similar data types
+The columns in every SELECT statement must also be in the same order
+The UNION operator selects only distinct values by default. To allow duplicate values, use UNION ALL
+------------------------------------------------------------------------------------------------------------------
+The SQL GROUP BY Statement
+The GROUP BY statement groups rows that have the same values into summary rows, like "find the number of customers in
+each country".
+
+The GROUP BY statement is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the
+result-set by one or more columns.
+
+The following SQL statement lists the number of customers in each country:
+ - select count(CustomerID), Country from Customers group by Country;
+The following SQL statement lists the number of customers in each country, sorted high to low:
+ - select COUNT(customerID), Country from Customers GROUP BY Country ORDER BY COUNT(CustomerID) DESC;
+The following SQL statement lists the number of orders sent by each shipper:
+ - select
+
+ -----------------------------------------------------------------------------------------
+ Question :
+ 3. Second Highest Salary in MySQL
+
+SELECT MAX(salary) FROM Employee WHERE Salary NOT IN ( SELECT Max(Salary) FROM Employee);
+SELECT MAX(Salary) From Employee WHERE Salary < ( SELECT Max(Salary) FROM Employee);
+
+--------------------------------------------------------------------------------------------
+Q.What is a foreign key?
+A foreign key is one table which can be related to the primary key of another table.
+Relationship needs to be created between two tables by referencing foreign key with the primary key of another table.
+when foreign key defind b/w two tables atleast 1 attribute must be common in bwn them.
+
+CREATE TABLE Students ( 	 /* Create table with foreign key - Way 1 */
+    ID INT NOT NULL
+    Name VARCHAR(255)
+    LibraryID INT
+    PRIMARY KEY (ID)
+    FOREIGN KEY (Library_ID) REFERENCES Library(LibraryID)
+);
+
+CREATE TABLE Students ( 	 /* Create table with foreign key - Way 2 */
+    ID INT NOT NULL PRIMARY KEY
+    Name VARCHAR(255)
+    LibraryID INT FOREIGN KEY (Library_ID) REFERENCES Library(LibraryID)
+);
+------------------------------------------------------------------------------------------------------------------
+Q. What is a Primary Key?
+The PRIMARY KEY constraint uniquely identifies each row in a table. It must contain UNIQUE values and has an implicit
+NOT NULL constraint.
+A table in SQL is strictly restricted to have one and only one primary key, which is comprised of single or multiple
+fields (columns).
+
+CREATE TABLE Students ( 	 /* Create table with a single field as primary key */
+    ID INT NOT NULL
+    Name VARCHAR(255)
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE Students ( 	 /* Create table with multiple fields as primary key */
+    ID INT NOT NULL
+    LastName VARCHAR(255)
+    FirstName VARCHAR(255) NOT NULL,
+    CONSTRAINT PK_Student
+    PRIMARY KEY (ID, FirstName)
+);
+------------------------------------------------------------------------
+
+

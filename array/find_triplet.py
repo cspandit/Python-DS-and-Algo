@@ -38,4 +38,4 @@ def find_triplet_eff(array, sm):
 
 
 arr = [12, 3, 4, 1, 6, 9]
-print(find_triplet_eff(arr, 24))
+print(find_triplet(arr, 24))

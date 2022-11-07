@@ -11,6 +11,7 @@
 
 def palindrome(string):
     string = string.lower()
+    print(string)
     new_string = ''
 
     for c in string:
