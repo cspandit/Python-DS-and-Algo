@@ -1,0 +1,78 @@
+Selenium is Package which provide many modules. One of which is webdriver.
+Web Driver as many class and methods which it provides for different types of browser
+
+webdriver is also called API because it communicates with browser drivers like an API. In Selenium3 this communication use JSON
+protocols. However, it is replaced(selenium4) with W3C(Http over Http server) as the communication between browsers drivers and
+browser done in W3C. This is to keep the uniformity and solve the instability issues.
+
+Installation:
+1. Get installation command for stable version from https://www.selenium.dev/downloads/ and install in pyCharm through
+terminal
+2. Download browser drivers compatible with install browsers
+
+test website link : "https://opensource-demo.orangehrmlive.com/"
+
+Types of locator: This cab be directly found in the html of the web page
+1. Id
+2. Name
+3. Linktext and partial Linktext : any text at the end of element is linktext
+Example : <input name='alsnalsc' id='12nk'>Name </input> here Name is linktext
+         : <a herf='links'> Register </a> here Register is linktext.
+And some text from linktext is called partial link text. like Reg will be called partial linktext from Register
+
+Class Name and Tagname are the locators which are used to find more than one element at once using find_elements() and
+not using find_element(). Same is the case with Tagname
+4. Class Name
+5. TagName
+
+Q. find all the links in the web page
+Answer : link_elements = driver.find_elements(by.TAG_NAME, 'a')
+         print(len(link_elements))
+
+Customized Locator: These cannot be found directly html code of the web page. These are generated using some tool
+1. CSS Selector : This is combination of different locator:
+    a. Tag and Id => <tag_name>#<id>
+    b. Tag and class => <tag_name>.<value of the class>
+    c. Tag and attribute(note that attribute is not a locator) => <tag_name>[attribute=value]
+    d. Tag, class and attribute => <tag_name>.<value of the class>[attribute=value]
+
+We create a value using above combination and pass it along with By.CSS_SELECTOR locator. Lets say that and element has
+both tag name and id present in it. we create new value <tag_name>#<di>. tag_name is optional. so new value also can be
+#<id>
+Example : driver.find_element(by.CSS_SELECTOR, '<tag_name>#<di>')
+
+2. Xpath :
+DOM(Documentation object model) : It is an API interface provided by the browser. When web page is open, browser creates
+DOM of the web page
+Xpath works on the DOM view of web page
+
+-> Xpath is defined as XML path
+-> Xpath is a syntax or language to find the element of a web page using xml path expression
+-> Xpath is used to find the location of any element on a webpage suing HTM DOM Structure
+-> Xpath can be used to navigate through elements and attributes in DOM
+-> Xpath is an address of the element
+
+There are two types of Xpath:
+1. Absolute/Full xpath : This will start navigating from 1st node till the element
+Example : /html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div[3]/form/div[4]/div[1]/div/div/input
+It always start with /
+2. Partial/Relative xpath : Relative path will start navigating from the node whose id is present in xpath and not from start
+Example : //*[@id="m_login_email"] - here elements which we are looking for is itself having id, so it doesn't need to look
+any further. Relative Xpath always starts with //*
+Relative Xpath is preferred for testing as any changes in hierarchy of node will affect absolute x path
+
+Writing relative x path manually : //<tag_name>[@attribute='value'].
+Instead of tag name we can use * //*[@attribute='value'] - it will go to each tag and match the attribute value
+
+SelectorsHub is extension available for all the browser to capture xpath
+Xpath options and method:
+1. AND => "//*[@attribute1='value' and @attribute2='value']"
+2. OR => "//*[@attribute1='value' or @attribute2='value']"
+3. contains() => This to test the dynamic element. Say there is start button which changes to stop immediately after a click
+in that case relative path will be : "//[contains(@id='st')]" - st because it is the common text for start and stop
+4. start-with() - above example can be used here as well because both start and stop starts with st :
+//*[start-with(@)id='st']. In these situation "//*[@id='start' or @id='stop']" will also work
+5. text()
+
+Xpath axes :
+
