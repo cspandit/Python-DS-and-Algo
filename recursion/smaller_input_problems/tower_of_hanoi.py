@@ -7,4 +7,4 @@ def t_o_h(n, s=1, h=2, d=3):
     t_o_h(n-1, h, s, d)
 
 
-t_o_h(3)
+t_o_h(2)

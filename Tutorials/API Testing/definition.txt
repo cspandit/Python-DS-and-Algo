@@ -1,6 +1,6 @@
 what is web services ?
  - A piece of software which is makes itself available for internet. It is set of protocols or standards to exchange
- data between applications or system. The exchange of data particularly happens in xml/json format. The important aspect
+ data between applications or systems. The exchange of data particularly happens in xml/json format. The important aspect
  of web services is to provide a service not necessarily UI for Humans. It is mostly for applications or systems.
  - Example : Retrieving information about product on Amazon.
              Placing and order on Amazon

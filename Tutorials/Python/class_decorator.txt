@@ -9,7 +9,7 @@ class CDecorator:
     def __init__(self,fun):
         self.fun = fun
     
-    #definig __call__ method inisde class make its instances callable
+    #definig __call__ method inside class make its instances callable
     def __call__(self, *args, **kwargs):
         start_time = time()
         self.fun()

@@ -25,7 +25,7 @@ class LinkedList:
         prevX = None
         prevY = None
 
-        while curX is not None and curX.data !=  key1:
+        while curX is not None and curX.data != key1:
             prevX = curX
             curX = curX.next
 

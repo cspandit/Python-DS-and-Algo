@@ -1,6 +1,6 @@
 import unittest
-from Unittest.test_my_addmath import TestAdd
-from Unittest.test_my_submath import TestSub
+from test_my_addmath import TestAdd
+from test_my_submath import TestSub
 
 def my_suite():
     suite = unittest.TestSuite()

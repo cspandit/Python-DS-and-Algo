@@ -1,8 +1,10 @@
 Creating a Context Manager :
 
 When creating context managers using classes, user need to ensure that the class has the methods: __enter__() and __exit__().
-The __enter__() returns the resource that needs to be managed and the __exit__() does not return anything but performs the cleanup operations.
-First, lets create a simple class called ContextManager to understand the basic structure of creating context managers using classes, as shown below:
+The __enter__() returns the resource that needs to be managed and the __exit__() does not return anything but performs
+the cleanup operations.
+First, lets create a simple class called ContextManager to understand the basic structure of creating context managers
+using classes, as shown below:
 
 # Python program creating a
 # context manager
@@ -36,7 +38,8 @@ statement body (code inside the with block)
 __exit__()[the parameters in this method are used to manage exceptions]
 File management using context manager :
 
-Let’s apply the above concept to create a class that helps in file resource management.The FileManager class helps in opening a file, writing/reading contents and then closing it.
+Let’s apply the above concept to create a class that helps in file resource management.The FileManager class helps in
+opening a file, writing/reading contents and then closing it.
 
 # Python program showing
 # file management using 

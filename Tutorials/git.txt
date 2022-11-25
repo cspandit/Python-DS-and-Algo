@@ -1,0 +1,47 @@
+set configuration:
+git config --global user.name = 'cspandit'
+git config --global user.email = 'cspandit123@gmail.com'
+git config --global core.autocrlf true (for windows) - this is to take care of default end of line character on diffrent os
+git config --global -e  => to open config file in defaul editor
+
+Initializing a repo:
+git init (inside project diretory) => this will create .git hidden folder. Can be seen by command 'ls -a'
+
+workflow:
+change ---> staging area(review) --->commit--->repo
+
+git commit -m 'commit message'
+git add file_name.py 'mesage' -- this will add file in stagging area - then we can do commit to repo
+git add *.py => add all python file
+git add . => add entire directory recurssively
+git commit -a -m 'message' - skiping staging area - direct commit
+
+Sacneario - remome file :
+1. delete file from your working directory
+2. do git add file_name 'message'
+
+Each commit will have :
+ID, message, Date/time, author and Compelte snapshot
+
+git status => to check the status of working directir and staging area
+git ls-files => to list files in staging area
+git rm filename => this will remove file from both working directory and staging area
+git mv file1.py file1.txt => renames file
+git rm --cached -r folder_name/ -> to remove folder from staging area
+git diff --staged => to comapre changes in the staging area
+dit diff => to compare changes in working directory and staginga area
+git log => to see the commit history
+git restore filename.py --staged => to remove changes from  stagging area
+git restore filename.py => to remive changes from working directory
+
+to ignore a file create directory .gitignore and add it here
+
+git clone <github_repo_url> - to clone the repo
+git checkout -b <new_branch_name> => create new branch and switch to it
+git checkout <branch_name> => to switch branch
+git branch => to list all the branches
+git merge <branch_name> => branch_name will be merged to current branch
+
+git remote add orgin <repo_url> => to add remote repo
+git remote -v => show the remote repo
+git push -u orgin master => to push master pranch to remote repo

@@ -1,5 +1,5 @@
 Selenium is Package which provide many modules. One of which is webdriver.
-Web Driver as many class and methods which it provides for different types of browser
+Web Driver has many class and methods which it provides for different types of browser
 
 webdriver is also called API because it communicates with browser drivers like an API. In Selenium3 this communication use JSON
 protocols. However, it is replaced(selenium4) with W3C(Http over Http server) as the communication between browsers drivers and
@@ -71,8 +71,59 @@ Xpath options and method:
 3. contains() => This to test the dynamic element. Say there is start button which changes to stop immediately after a click
 in that case relative path will be : "//[contains(@id='st')]" - st because it is the common text for start and stop
 4. start-with() - above example can be used here as well because both start and stop starts with st :
-//*[start-with(@)id='st']. In these situation "//*[@id='start' or @id='stop']" will also work
+//*[start-with(@id='st')]. In these situation "//*[@id='start' or @id='stop']" will also work
 5. text()
 
-Xpath axes :
+Xpath axes : It is used to travel html dom both top and button from any specified node(self)
+1. Child : Traveser all the child element of current node : //*[attribute=value]/child::tagname(tag name child element to travel)
+2. Parent : Traverse parent element of the current html tag : //*[attribute=value]/parent::tagname
+3. preceding : traverse all the element that comes before the current tag : //*[attribute=value]/preceding::tagname
+4. follwing : traverse all the element that comes after current tag: //*[attribute=value]/follwing::tagname
+5. Following-sibling : Traverse current tml tag to next sibling html tag
+//current html tag[@attribute='value']/following-sibling::sibling tag[@attribute='value']
+5. preceding-sibling : Traverse current tml tag to previous sibling html tag
+//current html tag[@attribute='value']/preceding-sibling::sibling tag[@attribute='value']
+6. Ancestor: Traverse all the ancestor elements(grand parent, parent, etc) of the current htm tag
+//*[attribute=value]/ancestor::tagname
+6. decendent: Traverse all the decendent elements(child parent, grandchild, etc) of the current htm tag
+//*[attribute=value]/decendent::tagname
+------------------------------------------------------------------------------------------------------------------
+
+Types of Selenium command/method
+1. application commands : get(), title, current_url, page_source(complete html source of the page)
+
+2. conditional commands : these commands are access one element and not on driver object
+is_displayed() - return true if selected element is displayed and false otherwise.
+is_enabled() - to check if element is enabled. Like sometimes it is not allowed to enter value in boxes.
+is_selected() - to select radio button and check boxes
+
+3. browser commands :
+1. close() : Closes the current browser window driver is focused on.
+2. quit() : It will close all the browser windows opened and call to the session end of calling Dispose() method
+
+4. Navigation commands : forward(), back() and refresh() - these are driver object commands
+
+5. Wait commands
+implicit_wait(), until() - explicit
+--------------------------------------------------------------------------------------------
+text vs get_attribute('value'):
+test : this will only return the inner text of the element
+if inner text for an element is not present we need to go for get_attribute('value')
+--------------------------------------------------------------------------------------------
+driver.submit() - is like pressing enter key
+-----------------------------------------------------------------
+//input[@class='value' and contains(@id, 'day')]
+
+--------------------------------------------------------
+dropdown
+from selenium.webdriver.support.select import Select
+drop_driver_element = driver.find_element(By.XPATH, "")
+drop_select = Select(drop_driver_element) - this has different method to select dropdown option
+drop_select.select_by_visual_text()
+x = drop_select.Options - this will give all the drop down options
+for option in x:
+    if option.text = 'india':
+        option.click()
+-------------------------------------------------------------------------------------------------------
+Alert Window and pop up windows
 

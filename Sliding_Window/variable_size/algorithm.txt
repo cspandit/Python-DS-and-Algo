@@ -6,7 +6,7 @@ while j < n:
     if calculation < k:
         j++
 
-    else if calculation  == k:
+    elif if calculation  == k:
         calculate ans
         j++
 

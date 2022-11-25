@@ -1,0 +1,16 @@
+ - sorted() function always return list and can list all sequence and collection(dict, set, frozenset)
+ - sort() is list method and sorts(in place) only list. returns None.
+ - tuple object has no in built methods other than count and index(list also has these two methods)
+ - set is unordered collection(cannot be indexed) iterable, mutable and has no duplicates.
+ - set cannot have dict,list and set as its item(These are not hashable). Exception is frozen set
+ - all hashable objet has __hash__(), __eq__() and __cmp__() method, if an objects value equal it has same hash value
+ - D = { k:v for (k,v) in zip(keys, values)}
+ - D = dict.fromkeys([1,2,3], 0)=> {1:0, 2:0, 3: 0}
+ - D = dict.fromkeys('ab', 0) => {'a':0, 'b':0}
+ - D = {x:0 in x for 'abc'} = {'a':0, 'b': 0, 'c':0s}
+ - sequence of for loops inside function and list comprehension is same
+ - [x for x in s1 if x in s2] - intersection
+ - from functools import reduce
+ - create thread :  t1 = threading.Thread(target=task1, name='t1')
+ - get thread name : threading.current_thread().name
+ - exec(open('module.py').read()) built-in function call is another way to launch files from the interactive prompt

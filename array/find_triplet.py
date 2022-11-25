@@ -3,7 +3,7 @@
 #
 # Examples:
 #
-# Input: array = {12, 3, 4, 1, 6, 9}, sum = 24;
+# Input: array = {12, 3, 4, 1, 9, 6}, sum = 24;
 # Output: 12, 3, 9
 # Explanation: There is a triplet (12, 3 and 9) present
 # in the array whose sum is 24.
@@ -22,6 +22,7 @@ def find_triplet(array, sm):
 
 # Complexity O(n^2)
 def find_triplet_eff(array, sm):
+    array.sort()
     n = len(array)
     for i in range(n-2):
         l = i+1
@@ -37,5 +38,5 @@ def find_triplet_eff(array, sm):
     return False
 
 
-arr = [12, 3, 4, 1, 6, 9]
-print(find_triplet(arr, 24))
+arr = [12, 3, 4, 1, 9, 6]
+print(find_triplet_eff(arr, 24))

@@ -54,6 +54,5 @@ class Conversion:
 
 if __name__ == "__main__":
     exp = "x+y*z/(w+u)"
-    # output : abcd^e-fgh*+^*+i-
     obj = Conversion()
     obj.convert(exp)

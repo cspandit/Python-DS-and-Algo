@@ -8,11 +8,11 @@ def permute(string, l, h):
         print(''.join(string))
         return
     else:
-        for i in range(len(string)):
+        for i in range(l, h):
             string[l], string[i] = string[i], string[l]
             permute(string, l+1, h)
             string[l], string[i] = string[i], string[l]  # so that for other choices string remain unchanged
 
 
 s = "ABC"
-permute(list(s), 0, len(s)-1)
+permute(list(s), 0, len(s))

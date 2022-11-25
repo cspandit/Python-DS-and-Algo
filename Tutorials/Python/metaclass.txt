@@ -28,7 +28,8 @@ A = type("A",(),{
 a = A("Chandra")
 a.getName()
 
-Whenever keyword "class" is used python internally convert to type: type("Name_of_class", tuple_of_parent_class, dictionary_of_all_the_class_attributes)
+Whenever keyword "class" is used python internally convert to type: type("Name_of_class", tuple_of_parent_class,
+dictionary_of_all_the_class_attributes)
 
 Example with inheritance and overriding:
 

@@ -48,7 +48,7 @@ class LinkedList:
         while current:
             temp = current.next
             del current.data
-            current = current
+            current = temp
 
     def delete_after_position(self, position):
         if self.head is None:

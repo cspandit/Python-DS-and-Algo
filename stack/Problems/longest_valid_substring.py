@@ -32,5 +32,5 @@ def longest_substring(string):
     return res
 
 
-s = "()(()))))"
+s = "(()())"
 print(longest_substring(s))

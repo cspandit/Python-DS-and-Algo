@@ -112,7 +112,7 @@ Amount of Rs. 500 will be added to account B.
 Isolation - In an system multiple transactions may execute concurrently but each transaction must be unaware of other
 transaction executing concurrently. This is achieved by conflict serializabiliity.
 
-Durability - After a transaction completes, the changes it has made to the database persist, evern if there are system failures.
+Durability - After a transaction completes, the changes it has made to the database persist, even if there are system failures.
 In real world system ,
 
 Atomicity is ensured by recovery systems.
@@ -120,9 +120,14 @@ Consistency is ensured by application programmer who codes the transaction. This
 of integrity constraints.
 Isolation is ensured by database component called concurreny-control system.
 Durability is ensured by guarantee that either the updates carried out by the transaction have been written to disk
-before the transaction completes or by ensuring that the information about he updates carried out by the transaction and
+before the transaction completes or by ensuring that the information about the updates carried out by the transaction and
 written to disk is sufficient to enable the databaes to reconstruct the updates when the database system is restarted
 after the failure
+
+How to create empty tables with the same structure as another table?
+A : SELECT * INTO new_table_copy FROM table_name where 1= 2
+    or
+    CREATE TABLE table_name_new AS SELECT * FROM table_name
 ------------------------
 Queries :
 To select all columns :
@@ -214,7 +219,7 @@ There are two wildcards often used in conjunction with the LIKE operator:
  select * from table_name where column_name like 'a%'; - all record where column_name value start with a
  select * from table_name where column_name like '[acs]%'; - start with a or c or s
  select * from table_name where column_name like '_a%'; - second letter is a
- select * from table_name where column_name like 'a__5' - start with a and at least 3 char length
+ select * from table_name where column_name like 'a__%' - start with a and at least 3 char length
  select * from table_name where column_name like '[a-f]%'; - start with any letter a to f
  select * from table_name where column_name like '[!acf]%' - not starting with a, c or f
 --------------------------------------------------------------------------------------------------------------
@@ -327,5 +332,61 @@ CREATE TABLE Students ( 	 /* Create table with multiple fields as primary key */
     PRIMARY KEY (ID, FirstName)
 );
 ------------------------------------------------------------------------
+How to change column data type ?
+A: ALTER TABLE table_name ALTER COLUMN column_name [SET DATA] TYPE INT
+
+How to do data clean up for a column
+A: TRUNCATE TABLE table_name RESTART column_name
+
+How to create sequence in sql
+A: CREATE SEQUENCE serial_number START 100
+   INSERT INTO TABLE column1, column2 VALUES(nextval(serial_number), 'chandra')
+   or
+   SELECT nextval(serial_number)
+How to get current date in sql ?
+A: SELECT GETDATE() or SELECT SYSDATE()
+
+How to select 1st four char of column value
+A: SELECT SUBSTRING(column_name, 1, 4) FROM table_name
+
+How to select some from column value
+A: SELECT MID(column_name, 0, LOCATE('(',column_name)) - this will select from start to till ( appear in the value
+   or SELECT SUBSTRING(column_name, 1, CHARINDEX('('), column_name) from table_name
+
+How to select top 3 value in a column
+A: SELECT TOP 3 * FROM table_name WHERE ORDER BY column DESC
+   or
+   SELECT * FROM table_name WHERE ORDER BY column_name DESC LIMIT 3
+
+How to combine first name and second name to give as fullNmae
+A: SELECT CONCAT(f_name, ' ', l_name) as FullName FROM table_name
+
+How to reterive even records from table
+A: select ID from (select rowno, ID from table) where mod(rowno, 2) = 0
+
+How to get two minimum value
+SELECT DISTINCT salary FROM Employee E1 WHERE 2 <= (SELECT DISTINCTCOUNT(salary) FROM Employee E2
+WHERE E1.Salary >= E2.Salary)  ORDER BY E1.Salary DESC
+
+How to select nth highest value
+A: select distinct salary from Employee E1
+    where n-1 = (select count(distinct(E2.salary )) from Employee E2)
+    where E1.Salary < E2.Salary
+
+    or
+    # third highest
+    select top 1 salary from employee where (select top 3 salary from employee order by desc) order by asc
+
+How to retrive duplicate data from db
+A: select count(*) column_name from table_name where group by column_name having count(*) > 1
+
+How to select 1st and last record in table
+A: select * from table_name where id=(select min(id) from table_name)
+
+How to retrive column haveing value less than 10
+A : select count(*) employee_count from table_name group by column_name having count(employee_count) < 10
+
+How to fetch 50% data from table
+A: select * from table_name where id <= (select count(id)/2 from table_name)
 
 

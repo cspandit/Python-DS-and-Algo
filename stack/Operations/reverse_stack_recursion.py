@@ -37,10 +37,9 @@ def insert_at_bottom(stack, item):
 
 
 def reverse_s(stack):
-    if s.is_empty():
+    if stack.is_empty():
         return
-    item = s.peek()
-    s.pop()
+    item = stack.pop()
     reverse_s(stack)
     insert_at_bottom(stack, item)
 

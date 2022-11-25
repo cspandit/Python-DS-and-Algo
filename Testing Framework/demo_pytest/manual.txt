@@ -15,14 +15,19 @@ Advantage of pytest :
 
 To solve the problem of implicit dependency for test functions 4, pytest provides with fixtures
 
-pytest fixtures are functions that can create data, test doubles, or initialize system state for the test suite. Any test that wants to use a fixture must explicitly use this fixture function as an argument to the test function, so dependencies are always stated up front:
+pytest fixtures are functions that can create data, test doubles, or initialize system state for the test suite.
+Any test that wants to use a fixture must explicitly use this fixture function as an argument to the test function,
+so dependencies are always stated up front:
 
     Example : fixture_demo.py
 
 
-If you want to make a fixture available for your whole project without having to import it, a special configuration module called conftest.py will allow you to do that.
+If you want to make a fixture available for your whole project without having to import it, a special configuration
+module called conftest.py will allow you to do that.
 
-pytest looks for a conftest.py module in each directory. If you add your general-purpose fixtures to the conftest.py module, then you’ll be able to use that fixture throughout the module’s parent directory and in any subdirectories without having to import it. This is a great place to put your most widely used fixtures.
+pytest looks for a conftest.py module in each directory. If you add your general-purpose fixtures to the conftest.py
+module, then you’ll be able to use that fixture throughout the module’s parent directory and in any subdirectories
+without having to import it. This is a great place to put your most widely used fixtures.
 
 Marks: Categorizing Tests:
  How to mark - @pytest.mark.<marker_name>
@@ -32,7 +37,8 @@ pytest provides a few marks out of the box:
 
     skip : skips a test unconditionally.
     skipif:  skips a test if the expression passed to it evaluates to True.
-    xfail:  indicates that a test is expected to fail, so if the test does fail, the overall suite can still result in a passing status.
+    xfail:  indicates that a test is expected to fail, so if the test does fail, the overall suite can still result in a
+    passing status.
     parametrize : creates multiple variants of a test with different values as arguments. 
 
 PARAMETRIZATION : 

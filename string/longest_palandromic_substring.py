@@ -6,7 +6,7 @@ def longest_palindrome(string):
     for i in range(len(string)):
         for j in range(i+1, len(string)+1):
             sub_list.append(string[i:j])
-    # print(sub_list)
+    print(sub_list)
 
     max_sub = ""
     for sub in sub_list:
@@ -27,4 +27,4 @@ def longest_palindrome(string):
     return max_sub
 
 
-print(longest_palindrome("forgeeksskeegfor"))
+print(longest_palindrome("aba"))

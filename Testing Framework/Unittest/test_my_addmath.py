@@ -1,4 +1,4 @@
-from Unittest import my_math
+import my_math
 import unittest
 import configparser
 import os
@@ -6,7 +6,7 @@ import sys
 
 
 class TestAdd(unittest.TestCase):
-	"""Lets just create a test suite for add function in my_math"""
+	"""Let's just create a test suite for add function in my_math"""
 	def setUp(self):
 		"""To create config from a input  file"""
 		self.config = configparser.ConfigParser()
@@ -31,7 +31,7 @@ class TestAdd(unittest.TestCase):
 		self.assertEqual(res, 'chandra_pandit')
 
 	def tearDown(self):
-		"""This like closing file or data base connection or delete db
+		"""This like closing file or database connection or delete db
 		can be included under tearDown"""
 		pass
 

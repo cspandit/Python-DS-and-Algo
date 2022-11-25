@@ -7,7 +7,7 @@ n = len(A[0])
 sec_diagonal_sum = 0
 for i in range(m):
     for j in range(n):
-        # row = numberOfColumn-column-1
+        # row == numberOfColumn-column-1 is diagonal position
         if i == n-j-1:
             sec_diagonal_sum += A[i][j]
 

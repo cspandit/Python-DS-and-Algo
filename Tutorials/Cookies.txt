@@ -1,5 +1,6 @@
 what is coockie?
-A cookie is a small piece of information that is stored in a text file on user's (client) hard drive by the web server. This piece of information is then sent back to the server each time the browser requests a page from the server. shopping cart, ad
+A cookie is a small piece of information that is stored in a text file on user's (client) hard drive by the web server.
+This piece of information is then sent back to the server each time the browser requests a page from the server. shopping cart, ad
 
 What is the Content of Cookie?
 The cookie consists of mainly three things

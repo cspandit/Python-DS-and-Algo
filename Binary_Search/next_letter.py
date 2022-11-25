@@ -22,6 +22,6 @@ def next_letter(array, key):
     return nex
 
 
-A = ['a', 'c', 'f', 'h']
+A = ['a', 'c', 'f', 'h', 'g', 'z']
 nex_let = next_letter(A, 'e')
 print(nex_let)

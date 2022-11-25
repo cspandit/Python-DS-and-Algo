@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     # print(stacks.pop1())
     # print(stacks.pop2())
-    stacks.push2("C")
-    stacks.push1(3)
+    # stacks.push2("C")
+    # stacks.push1(3)
 
     print(a)
