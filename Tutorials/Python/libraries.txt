@@ -1,0 +1,24 @@
+Paramiko is a Python library that makes a connection with a remote device through SSh. Paramiko is using SSH2 as a
+replacement for SSL to make a secure connection between two devices. It also supports the SFTP client and server model.
+
+To Make connection we need generate RSA key pair(public/private) and copy it host machine.
+$ ssh-keygen -t rsa
+$ ssh-copy-id -i ~/.ssh/mykey username@my_remote_host.org
+
+install paramiko
+
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+client = ssh.connect('10.100.200', post=22, username='chandra', password='*****')
+stdin, stdout, stderr) = client.exec_command(command)
+
+Pywinauto:
+pywinauto is a set of python modules to automate the Microsoft Windows GUI. At its simplest it allows you to send mouse and
+keyboard actions to windows dialogs and controls, but it has support for more complex actions like getting text data.
+
+from pywinauto import Application
+from pywinauto import mouse
+from pywinauto import keyboard
+
+app = Application().start(r'C:\Program Files\Sublime Text\sublime_text.exe')
+print(app.windows())

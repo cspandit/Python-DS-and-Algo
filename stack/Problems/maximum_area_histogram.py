@@ -19,7 +19,7 @@ def max_area_histogram(array):
     for i in range(len(array)):
         result.append((right[i] - left[i] - 1) * array[i])
 
-    print("Result: ",result)
+    print("Result: ", result)
     return max(result)
 
 

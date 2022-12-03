@@ -117,9 +117,9 @@ Position : [5, 0]
 
 Note that mutating class variables from instances can lead to some unexpected consequences.
 class D:
-x = []
-def __init__(self, item):
-	self.x.append(item) # note that this is not an assignment!
+    x = []
+    def __init__(self, item):
+	    self.x.append(item) # note that this is not an assignment!
 d1 = D(1)
 d2 = D(2)
 d1.x

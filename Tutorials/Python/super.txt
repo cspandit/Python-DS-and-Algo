@@ -60,7 +60,8 @@ s.changeName("shekhar")
 
 
 In the case of multi-level inheritances which class will it refer? Well, Python super() will always refer the immediate superclass.
-Also Python super() function not only can refer the __init__() function but also can call all other function of the superclass. So, in the following example, we will see that.
+Also Python super() function not only can refer the __init__() function but also can call all other function of the superclass.
+So, in the following example, we will see that.
 
 class A:
     def __init__(self):

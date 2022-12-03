@@ -16,3 +16,5 @@ def permute(string, l, h):
 
 s = "ABC"
 permute(list(s), 0, len(s))
+
+

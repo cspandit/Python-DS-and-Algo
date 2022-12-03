@@ -30,7 +30,7 @@ def stock_span(array):
                 res.append(stack[-1][1])
 
         stack.append((array[i], i))
-
+    print(res)
     for x in range(n):
         res[x] = x - res[x]
 
