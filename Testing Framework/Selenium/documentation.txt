@@ -48,7 +48,7 @@ Xpath works on the DOM view of web page
 
 -> Xpath is defined as XML path
 -> Xpath is a syntax or language to find the element of a web page using xml path expression
--> Xpath is used to find the location of any element on a webpage suing HTM DOM Structure
+-> Xpath is used to find the location of any element on a webpage suing HTML DOM Structure
 -> Xpath can be used to navigate through elements and attributes in DOM
 -> Xpath is an address of the element
 

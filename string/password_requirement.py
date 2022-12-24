@@ -2,7 +2,7 @@
 # and a password. However, the password must be strong. The website considers a password to be strong if it satisfies the
 # following criteria:
 #
-# Its length is at least .
+# Its length is at least 6.
 # It contains at least one digit.
 # It contains at least one lowercase English character.
 # It contains at least one uppercase English character.

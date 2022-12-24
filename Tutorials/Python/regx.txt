@@ -46,6 +46,14 @@ x = re.split("\s", str) ///re.split("\s",str,1) -->>O/P:['The', 'rain in Spain']
 print(x)
 O/P: ['The', 'rain', 'in', 'Spain']
 
+#Search and replace
+
+re.sub(pattern, replacement, string, count=0, flags=0)
+str = "xyz@gmail.com"
+print(re.sub("[a-z]*@", "abc@", str))
+
+O/p = abc@gmail.com
+
 ************************************************************************
 METACHARACTERS
 Character	Description						Example	

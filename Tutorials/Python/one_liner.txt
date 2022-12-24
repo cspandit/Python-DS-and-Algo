@@ -14,3 +14,4 @@
  - create thread :  t1 = threading.Thread(target=task1, name='t1')
  - get thread name : threading.current_thread().name
  - exec(open('module.py').read()) built-in function call is another way to launch files from the interactive prompt
+ - S = '01234567' >>> S[5:1:-1]  output is : '5432'

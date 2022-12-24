@@ -1,6 +1,6 @@
 def alternate(s):
     n = len(s)
-    s = list(s)
+    #s = list(s)
     i = 0
     count = 0
     while i < n-1:

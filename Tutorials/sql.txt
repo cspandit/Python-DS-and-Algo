@@ -354,9 +354,9 @@ A: SELECT MID(column_name, 0, LOCATE('(',column_name)) - this will select from s
    or SELECT SUBSTRING(column_name, 1, CHARINDEX('('), column_name) from table_name
 
 How to select top 3 value in a column
-A: SELECT TOP 3 * FROM table_name WHERE ORDER BY column DESC
+A: SELECT TOP 3 * FROM table_name ORDER BY column DESC
    or
-   SELECT * FROM table_name WHERE ORDER BY column_name DESC LIMIT 3
+   SELECT * FROM table_name ORDER BY column_name DESC LIMIT 3
 
 How to combine first name and second name to give as fullNmae
 A: SELECT CONCAT(f_name, ' ', l_name) as FullName FROM table_name
