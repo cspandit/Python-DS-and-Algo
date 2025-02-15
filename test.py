@@ -1,3 +1,4 @@
+# This is to check quick code
 x = 12345
 def reverse(num):
     count = 0
