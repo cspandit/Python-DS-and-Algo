@@ -10,7 +10,7 @@ and column and looking for max sum will not be very ideal solution given that ma
 Below are the group of mirror elements in provided matrix :
 mirror1 = [r0c0, r0c3, r3c0, r3c3]
 mirror2 = [r0c1, r0c2, r3c1, r3c2]
-mirror3 = [r1c1, r1c3, r2c0, r2c3]
+mirror3 = [r1c0, r1c3, r2c0, r2c3]
 mirror4 = [r1c1, r1c2, r2c1, r2c2]
 
 Answer = sum(max(mirror1), max(mirror2), max(mirror3), max(mirror4))
