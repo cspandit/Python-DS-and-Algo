@@ -12,11 +12,11 @@ class MyIterator:
             self.counter += 1
             return self.iterable_object[self.counter-1]
         if self.counter > self.max:
+
             raise StopIteration
 
+
 x = 'chandra'
-
-
 y = MyIterator(x)
 print(y.__next__())
 print(next(y))
