@@ -14,8 +14,6 @@ class MyIterator:
         if self.counter > self.max:
             raise StopIteration
 
-
-
 x = 'chandra'
 
 
