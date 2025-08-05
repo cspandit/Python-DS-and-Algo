@@ -15,7 +15,9 @@ class MyIterator:
             raise StopIteration
 
 
+
 x = 'chandra'
+
 
 y = MyIterator(x)
 print(y.__next__())
