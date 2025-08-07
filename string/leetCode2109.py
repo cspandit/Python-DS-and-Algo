@@ -22,4 +22,15 @@ def addSpaces(s, spaces):
     res += s[spaces[-1]:]
     return res
 
-print(addSpaces("LeetcodeHelpsMeLearn", [8,13,15]))
+def add_space_chandra(s, spaces):
+    spaces.sort()
+    new_s = ""
+    k = 0
+    for x in spaces:
+        new_s = new_s + s[k:x] + ' '
+        k = x
+    new_s = new_s + s[k:]
+    print(new_s)
+
+add_space_chandra("LeetcodeHelpsMeLearn", [15, 8,13])
+#print(addSpaces("LeetcodeHelpsMeLearn", [8,13,15]))
