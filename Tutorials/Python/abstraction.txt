@@ -1,3 +1,17 @@
+Abstract Base Classes (ABCs):
+Before diving into the @abstractmethod decorator, it's important to understand what an abstract base class is.
+An ABC provides a blueprint for other classes to follow, defining methods that must be implemented by its subclasses.
+This is useful in scenarios where you want to set a common interface for a group of related classes.
+
+Python’s abc module enables the creation of abstract base classes. To define an ABC, you inherit from ABC,
+which is provided by the abc module.
+
+The @abstractmethod Decorator:
+The @abstractmethod decorator is used to indicate that a method is an abstract method.
+This means that the method does not need to be implemented in the abstract class itself,
+but must be implemented in any subclass that inherits from the abstract class.
+
+
 from abc import ABC, abstractmethod
 
 class Polygon(ABC):
