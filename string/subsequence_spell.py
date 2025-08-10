@@ -17,5 +17,5 @@ def maintained_order(s):
         return 'NO'
 
 
-s = 'haacckkerrannnkkk'
+s = 'ahaacckkerrannnkkk'
 print(maintained_order(s))

@@ -1,10 +1,16 @@
-# This is to check quick code
-x = 12345
-def reverse(num):
-    count = 0
-    while num:
-        i = num%10
-        num = num//10
-        count += 1
-    return count
-print(reverse(x))
+class X:
+    @classmethod
+    def class_test(cls):
+        print("This is class method")
+        cls.age = 0
+
+    def regular_method(self):
+        print("This is regular method")
+        print(self.age)
+
+if __name__ == '__main__':
+    x = X()
+    x.class_test()
+    x.regular_method()
+
+
