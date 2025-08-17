@@ -65,6 +65,22 @@ class LinkedList:
             cur.data, cur.next.data = cur.next.data, cur.data
             cur = cur.next.next
 
+    def swap_alternate_node(self):
+        prev = None
+        temp = self.head
+        while temp and temp.next:
+            x = temp
+            y = temp.next
+            x.next = y.next
+            y.next = x
+            if prev is not None:
+                prev.next = y
+            prev = x
+            if x == self.head:
+                self.head = y
+            temp = temp.next
+
+
     def print_list(self):
         if self.head is None:
             return
@@ -83,5 +99,6 @@ if __name__ == "__main__":
         linked_list.append(node)
 
     linked_list.print_list()
-    linked_list.swap_pair()
+    #linked_list.swap_pair()
+    linked_list.swap_alternate_node()
     linked_list.print_list()
