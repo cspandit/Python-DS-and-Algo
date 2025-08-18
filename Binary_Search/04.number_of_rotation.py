@@ -23,13 +23,14 @@ def rotation_number(array):
         if array[mid] < array[nex] and array[mid] < array[pre]:
             return mid
 
-        elif array[low] < array[mid]:
+        elif array[low] <= array[low]:
             low = mid+1
-        elif array[mid] < array[high]:
+        elif array[mid] <= array[high]:
             high = mid - 1
 
 
-A = [11, 12, 15, 18, 2, 5, 6, 8]
+# A = [8, 11, 12, 15, 18, 2, 5, 6]
+A = [5, 6, 8, 11, 12, 15, 18, 2]
 print(rotation_number(A))
 
 

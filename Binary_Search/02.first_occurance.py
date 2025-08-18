@@ -1,3 +1,4 @@
+# The idea is to not stop looking for key in the left array and keep storing the possible result.
 # find last occurrence will have similar approach.
 # Here we need to check right side of the array once kye is found
 
