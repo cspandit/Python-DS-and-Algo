@@ -1,0 +1,17 @@
+link :  https://docker-curriculum.com/
+
+1. docker run hello world
+2. docker pull busybox - download the busybox dicker image
+3. docker images - all the pulled images
+4. ducker run busybox  - just launch a container with busybox image
+5. docker run busybox echo "hello from busybox" - Docker client finds the image (busybox in this case), loads up the container and then runs a command ‘echo’in that container.
+6. Docker ps - list all the running containers
+7. docker rm <container id> to delete container
+8. Docker Daemon - The background service running on the host that manages building, running and distributing Docker containers. The daemon is the process that runs in the operating system which clients talk to.
+* Docker Client -  The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as Kitematic which provide a GUI to the users.
+* Docker Hub- A registry of Docker images. You can think of the registry as a directory of all available Docker images. If required, one can host their own Docker registries and can use them for pulling images.
+* docker run -d -P --name static-site prakhar1989/static-site - In the above command,will detach our terminal,will publish all exposed ports to random ports and finally --name corresponds to a name we want to give. Now we can see the ports by running the docker port [CONTAINER] command
+
+Create a docker file and go to the location of docker file and run command
+Docker build -t <username>/<imagename> .
+Docker run -p <portnumber> <image name>
