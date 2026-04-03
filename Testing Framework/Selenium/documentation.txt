@@ -74,6 +74,11 @@ in that case relative path will be : "//[contains(@id='st')]" - st because it is
 //*[start-with(@id='st')]. In these situation "//*[@id='start' or @id='stop']" will also work
 5. text()
 
+Example:
+//tagname[text()='Exact Text']
+//tagname[contains(text(), 'Partial Text')]
+//tagname[starts-with(text(), 'Beginning Text')]
+
 Xpath axes : It is used to travel html dom both top and button from any specified node(self)
 1. Child : Traveser all the child element of current node : //*[attribute=value]/child::tagname(tag name child element to travel)
 2. Parent : Traverse parent element of the current html tag : //*[attribute=value]/parent::tagname
@@ -126,4 +131,16 @@ for option in x:
         option.click()
 -------------------------------------------------------------------------------------------------------
 Alert Window and pop up windows
+
+34. How do you hover over a web element with a mouse?
+Actions class utility is used to hover over a web element in Selenium WebDriver.
+Instantiate Actions class:
+Actions action = new Actions(driver);
+In this scenario, we hover over the search box of a website
+actions.moveToElement(driver.findElement(By.id("id of the searchbox"))).perform();
+
+39. How to take screenshots in WebDriver?
+TakeScreenshot interface can be used to take screenshots in WebDriver.
+getScreenshotAs() method can be used to save the screenshot
+
 

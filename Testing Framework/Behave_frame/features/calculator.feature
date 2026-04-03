@@ -11,7 +11,7 @@ Feature: To test the working calculator
     | 9             | 12    |    | 21     |
     | 5             | 15    |    | 20     |
 
-  Scenario: Add wo number second test case
+  Scenario: Add two number second test case
     Given two inputs numbers are 8 and 8
     When calculation is performed
     Then calculation should match expected result 16

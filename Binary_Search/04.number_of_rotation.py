@@ -23,7 +23,7 @@ def rotation_number(array):
         if array[mid] < array[nex] and array[mid] < array[pre]:
             return mid
 
-        elif array[low] <= array[low]:
+        elif array[low] <= array[mid]:
             low = mid+1
         elif array[mid] <= array[high]:
             high = mid - 1

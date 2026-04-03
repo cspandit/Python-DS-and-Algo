@@ -21,10 +21,30 @@ it presents the sweet spot of continuous testing for QA and Development teams. W
 the advantages of API testing are becoming well known.
 
 While there are many aspects of API testing, it generally consists of make requests to a single or sometimes multiple
-API endpoints and validate the response - whether for performance, security, functional correctness,
+API endpoints and validate the response - whether for reliability, performance, security, functional correctness,
 or just a status check. While UI testing may focus on validating the look and feel of a web interface or that
 a particular payment button works - API testing puts much more emphasis on the testing of business logic, data responses
 and security, and performance bottlenecks.
+
+Types of API Testing:
+1. Functional Testing: In this type of API testing actual business logic of API is tested. It checks if API responds
+correctly to any requests made to API endpoint.
+2. Load testing: It involves testing of API's performance and stability under stressful condition. It verifies if API
+performs correctly under both normal and peak data input.
+3. Runtime and error detection: This type testing ensure if API handles runtime error and exception correctly. This
+includes testing for network timeout, memory leaks and incorrect inputs and other errors
+4. UI Testing: This testing validates if API perform correctly within app's user interface. This type of testing ensure
+API is handling UI input correctly and UI is reflecting API results correctly.
+5. Penetration testing: It is a type of security testing that involves simulating attack from hackers to detect vulnerability
+and weakness in API. This testing involves network scanning, vulnerability scanning and manual penetration testing to check whether
+user with little expertise can gain full access of API including information like functions, process and resources.
+6. Security testing: Security testing ensure if API is safe from external threats. It includes testing of structure of
+access control, user rights management, validating encryption methodologies and authorization validation
+7. Fuzz testing: Fuzz testing involves feeding large amount of unexpected and invalid data into API and to test if API can
+handle unexpected data and recovers from errors.
+8. Validation testing: This testing happens in final stage of API development and involves checking input data, output format
+and response code.
+
 
 The Benefits of API Testing
 Earlier Testing -
@@ -47,3 +67,11 @@ Speed and Coverage of Testing -
 300 UI tests may take 30 hours to run. 300 API tests could be run in 3 minutes.
 That means you’ll find more bugs in less time, while also being about to fix them immediately.
 
+API testing best practice:
+1. Test a wide span of corner cases and conditions and use automated validation extensively.
+2. Run tests throughout the lifecycle(development to deployment) of API: Idea is to test API early and test in different
+environment.
+3. Write Reusable subtest : Writing reusable subtests involves creating modular test scripts that can be reused for
+multiple APIs.
+4. Keep Your Tests Organized: Organizing your tests can help you manage your test suites more efficiently and make it
+easier to identify and fix issues.

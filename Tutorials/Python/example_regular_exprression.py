@@ -73,3 +73,15 @@ pattern = re.compile(r'https?://(www\.)?[a-zA-Z]+\.(com|gov)')
 matches = pattern.finditer(urls)
 for match in matches:
      print(match)
+
+# pattern = re.compile(r'https?://(?:www\.)?[a-zA-Z]+\.(?:com|gov)')
+# if we want to user findall method then we need to make optional group as non capturing by adding ?: at start of group
+
+email = '''
+CoreyMschafer@gmail.com 234
+corey.schafer@university.edu2
+corey-321-schafer@my-work.net 34
+'''
+# Number next to each email represent number of email find the list of such number
+pattern = r'[a-zA-Z.0-9-]+@[a-z-.]+(?:com|edu|net)\s?(\d+)'
+print(re.findall(pattern, email))

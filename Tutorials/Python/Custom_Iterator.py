@@ -5,7 +5,7 @@ class MyIterator:
         self.max = len(self.iterable_object)-1
 
     def __iter__(self):
-        self
+        return self
 
     def __next__(self):
         while self.counter <= self.max:

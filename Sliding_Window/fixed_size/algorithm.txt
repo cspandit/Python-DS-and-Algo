@@ -5,10 +5,10 @@ k = window size
 while j < n:
     do calculation
 
-    if j - i - 1 < k:
+    if j - i + 1 < k:
         j++
 
-    else if j - i - 1 == k:
+    else if j - i + 1 == k:
         get ans from calculation
         j++
 

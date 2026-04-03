@@ -1,0 +1,11 @@
+"""
+str = open(input-file, read-mode).read()
+dict = json.loads(str)
+
+dict = json.load(input-file)
+
+str = json.dumps(dict)
+open(output-file, write-mode).write(str)
+
+json.dump(d, open(output-file, write-mode))
+"""

@@ -1,49 +1,145 @@
-Istall: pip install pytest (set the environment variable for python scripts)
-launch command : pytest / pytest <test_file.py>
+Install: Using pytest requires installing it with pip in a virtual environment to set up the pytest command.
+$ python -m venv .venv
+$ source .venv/bin/activate
+(venv) $ python -m pip install pytest
 
-output indication : 
+Why Pytest:
+1. Less boilerplate: Pytest allow for less code, user readability and more features compare to unittest
+2. Nicer output: Pytest provides detailed information about system state and failures in the test report.
+3. Manging test dependencies and state is easier with help of fixtures
+4. Parametrization in helps avoid redundant testcases by allowing multiple test scenarios from single
+    test functions
+
+**************************************************** Running Pytest **************************************************
+$ pytest --help
+usage: pytest [options] [file_or_dir] [file_or_dir] [...]
+=> When pytest is run without any arguments it looks for testcases in current and all subdirectories.
+If given filename, directories it looks for them
+Command for only one testcase:
+$ pytest [options] <testfile path>::<testcase name>
+Command for single test class
+$ pytest [options] <testfile path>::<test class name>
+Command for single testcase from a test class
+$ pytest [options] <testfile path>::<test class name>::<testcase name>
+
+**************************************************** Using Options **************************************************
+1. -k EXPRESSION only run tests/classes which match the given
+    substring expression. Ex: pytest -k "asdict or defaults"
+2. -m MARKEXPR only run tests matching given mark expression(pytest.mark.sanity).
+    EX:: -m 'mark1 and not mark2'
+3. -v VERBOSE give more detailed report. Test start session contain extra info like metadata on python version,
+       home directory and package details. It also provides detail testcase file and testcase name
+4. -q quite verbosity. Report doesn't show testcase or file name
+4. -x, --exitfirst exit instantly on first error or failed test.
+5. --maxfail=num exit after first num failures or errors.
+    Ex: pytest --maxfail=3
+6. –collect-only : The --collect-only option shows you which tests will be run with the given options and
+    configuration.
+7. --version display pytest lib version and import information.
+8. -h, --help show help message and configuration info
+9. --lf -last-failed run the last failed test case
+10. --ff -failed-first it runs last failed test case first then all passed test case.
+11. --durations=N it list N slowest testcases
+12. --tb=no to run pytest without traceback in case of failure cases.
+13. -s include print statement in test summary report
+14. -rs to show reason in test report given to skip, skipif and xfail markers
+
+**************************************************** Output Indication ************************************************
 A dot (.) means that the test passed.
 An F means that the test has failed.
 An E means that the test raised an unexpected exception.
+An s means testcase is skipped(pytest.mark.skip(), pytest.mark.skipif()
+An x means testcase was marked xfail() - TC was supposed to fail, ran and failed
+An X means testcase was marked as XPASS() - TC was supposed to fail, run and passed
 
-Advantage of pytest :
-1. Less boilerplate 
-2. Nicer output
-3. Less to learn
-4. Easier to Manage State and Dependencies :
-    - pytest fixtures 
+********************************** Assert Statement in Pytest ******************************************************
+assert <expression> - if expression will evaluate to boolean TRUE then testcase will pass and if expression
+evaluate to boolean FALSE then testcase will fail
+Ex:
+def test_my_fun():
+    assert True => This test will always pass
+def test_my_fun():
+    assert a==b => This test will pass if a is equal b and fail otherwise
+def test_my_fun => This test will pass if a is less than equal to b and fail otherwise
+    assert a<=b
 
-To solve the problem of implicit dependency for test functions 4, pytest provides with fixtures
+********************************** Expecting Exception *************************************************************
+If a function to tested is supposed to raise certain type of exception that can be captured in test function.
+This test function will pass if expected exception type is raised and fail otherwise
+Ex:
+Function To Be Tested:
+def divide(a, b):
+    if b == 0:
+        raise ZeroDivisionError("Zero cannot divide anything")
+    else:
+        return a/b
+Test Function:
+def test_divide():
+    with pytest.raises(ZeroDivisionError) as error_info:
+        divide(12,0)
+    error_msg = error_info.value.args[0]
+    assert error_msg == 'Zero cannot divide anything'
+=> This test will pass because it raises expected error with expected error message!
 
-pytest fixtures are functions that can create data, test doubles, or initialize system state for the test suite.
-Any test that wants to use a fixture must explicitly use this fixture function as an argument to the test function,
-so dependencies are always stated up front:
+********************************** Marking Test Functions *************************************************************
+Sometimes we don't need to run whole test suite but only certain smoke testcases which are essential to check
+if there is no some major break in this system. Marking in pytest help to achieve selected testcase run
+Ex:
+@pytest.mark.smoke
+def test_divide():
+    assert divide(12, 3) == 4
 
-    Example : fixture_demo.py
+@pytest.mark.smoke
+@pytest.mark.functional
+def test_data():
+    assert divide('abc', 0) == 0
 
+$ pytest -v -m 'smoke' => will run only first testcase
+$ pytest -v -m 'smoke and functional' => will run all testcase which are marked as both 'smoke' and 'functional'.
+    so second testcase will run
+$ pytest -v -m 'smoke or functional' => will run all testcase which are marked as either 'smoke' or 'functional'.
+    so both testcase will run
+$ pytest -v -m 'smoke and not functional' => will run all testcase which are marked as 'smoke' but not 'functional'.
+    so first testcase will run
 
-If you want to make a fixture available for your whole project without having to import it, a special configuration
-module called conftest.py will allow you to do that.
+********************************** Skipping Testcase **************************************************************
+Pytest comes with few builtin markers like: skip(), skipif() and xfail().
+To skip a testcase we can put a builtin marker as below:
+Ex:
+@pytest.mark.skip(reason='not relevant')
+def test_divide():
+    assert divide(12, 3) == 4
+=> Here arg reason is optional in case of @pytest.mark.skip()
 
-pytest looks for a conftest.py module in each directory. If you add your general-purpose fixtures to the conftest.py
-module, then you’ll be able to use that fixture throughout the module’s parent directory and in any subdirectories
-without having to import it. This is a great place to put your most widely used fixtures.
+@pytest.mark.skip(sys.platform == 'mac', reason='to be executed only on windows')
+def test_divide():
+    assert divide(12, 3) == 4
+=> Here arg reason is optional is case of @pytest.mark.skipif()
 
-Marks: Categorizing Tests:
- How to mark - @pytest.mark.<marker_name>
- How to run -  pytest -m <marker_name>
+Running test file like $ pytest test_file.py will not show reason. We can user option '-v' or '-rs' to get the skipped
+reasons in test report summary($ pytest -rs test_file.py)
 
-pytest provides a few marks out of the box:
+Marking Tests as Expecting to Fail:
+With the skip and skipif markers, a test isn’t even attempted if skipped. With the xfail marker,
+we are telling pytest to run a test function, but that we expect it to fail. xfail(<expression>, reason='') can have
+expression and reason argument but it is optional. If given expression evaluate to TRUE xfail will function correctly
+else the testcase will execute as normal.
+Ex.
+@pytest.mark.xfail(sys.platform == 'darwin', reason='to be executed only on windows')
+def test_divide_ok():
+    assert divide(12,3) == 5
+=> This test is expected to fails and it fails so it is denoted by x(lowercase) in test summary
+@pytest.mark.xfail
+def test_divide_float():
+    assert divide(12.0,3.0) == 4.0
+=> This test is expected to fail, but it passes so it is denoted by X(uppercase) in test summary
 
-    skip : skips a test unconditionally.
-    skipif:  skips a test if the expression passed to it evaluates to True.
-    xfail:  indicates that a test is expected to fail, so if the test does fail, the overall suite can still result in a
-    passing status.
-    parametrize : creates multiple variants of a test with different values as arguments. 
-
-PARAMETRIZATION : 
- - its useful when we have multiple input with slight difference in input and expected output
- Below are the test method to test is_palindrome() method:
+********************************** Parametrization ****************************************************************
+It is useful when we have multiple input with slight difference in input and expected output. Instead of creating
+separate testcase of each input set, pytest parametrization help running set of input data on single test function.
+Each data in set is considered separate testcase in test report.
+Ex:
+Below are the test method to test is_palindrome() method:
  def test_is_palindrome_empty_string():
     assert is_palindrome("")
 
@@ -65,8 +161,8 @@ def test_is_palindrome_not_palindrome():
 def test_is_palindrome_not_quite():
     assert not is_palindrome("abab")
 
-- -> This looks like boilerplate as all the test case except last is of similar kind with slight difference in input.
-     Lets use to pytest.mark.parametrize to overcome it 
+=> This looks like boilerplate as all the test case except last is of similar kind with slight difference in input.
+    Let's use to pytest.mark.parametrize to overcome it
 
      @pytest.mark.parameterize('palindrome', [
         "",
@@ -87,8 +183,317 @@ def test_is_palindrome_not_quite():
     def test_is_not_palindrome(non-palindrome):
         assert is_palindrome(non-palindrome)
 
--- > Combining into one:
-
-    @pytest.mark.parametrize('maybe_palindrome', 'expected_results', [
-        
+=> Combining into one:
+    @pytest.mark.parametrize('may_be_palindrome, expected_result', [
+    ("boB", True),
+    ("Never odd or even", True),
+    ("abab", False)
     ])
+    def test_palindrome_combine(may_be_palindrome, expected_result):
+        assert is_palindrome(may_be_palindrome) == expected_result
+
+****************************************** Fixtures ***************************************************************
+Fixtures in pytest are functions which are executed before (in some case after) the test functions. It can be used to
+get data set to work on testcase. It can make system state known before executing the testcases
+Ex.
+@pytest.fixture()
+def my_fixture():
+    return 1
+
+def test_my_fixture(my_fixture):
+    assert 1 == my_fixture
+
+Fixture function defined at top(my_fixture()) can be used in multiple test functions by just including fixture function
+name in test function argument. Pytest will look for the fixture first in the module file(test file) then in conftest.py
+if it doesn't find in the module file.
+
+Ex:
+@pytest.fixture()
+def tasks_db(tmpdir):
+    """Connect to db before tests, disconnect after."""
+    db.start()
+
+    yield # this is where the testing happens
+
+    db.stop()
+
+A fixture function runs before the tests that use it. However, if there is a yield in the function, it stops there,
+passes control to the tests, and picks up on the next line after the tests are done. Therefore, think of the code above
+the yield as “setup” and the code after yield as “teardown.” The code after the yield, the “teardown,” is guaranteed to
+run regardless of what happens during the tests.
+
+=>Adding --setup-show in run command will show how fixture are used in test functions ($ pytest -v --setup-show test_fun.py)
+=>A test function can use multiple fixture just by including multiple fixture function name in test function argument
+
+=> tmpdir used as argument here in fixture function is pytest builtin fixture provides unique automatically managed
+    temporary directory which can be used by test function requesting the fixture
+    Ex:
+    @pytest.fixture()
+    def my_file_fixture(tmpdir):
+        p = tmpdir.mkdir('sub_dir').join('test.txt')
+        p.write('content')
+        assert p.read() == 'content'
+        assert len(tmpdir.listdir()) == 1
+
+Sharing Fixtures Through conftest.py:
+You can put fixtures into individual test files, but to share fixtures among multiple test files, you need to use a
+conftest.py file somewhere centrally located for all of the tests. Although conftest.py is a Python module, it should
+not be imported by test files. Don’t import conftest from anywhere. The conftest.py file gets read by pytest, and is
+considered a local plugin.
+
+Specifying Fixture Scope:
+Pytest fixtures have optional param called 'scope'. Scope of a fixture decides how often a fixture is setup and torn down.
+'scope' param can have value 'session', 'module', 'class', 'functions'. Function level scope is default in pytest.
+Ex: Lets create test module with name test_scope.py and write some function, class and method.
+
+import pytest
+@pytest.fixture(scope='function')
+def func_scope():
+    pass
+
+@pytest.fixture(scope='session')
+def sess_scope():
+    pass
+
+@pytest.fixture(scope='module')
+def mod_scope():
+    pass
+
+@pytest.fixture(scope='class')
+def class_scope():
+    pass
+
+def test_one(sess_scope, mod_scope, func_scope):
+    pass
+def test_two(sess_scope, mod_scope, func_scope):
+    pass
+
+@pytest.mark.usefixtures('class_scope')
+class TestSomething:
+    def test_three(self):
+        pass
+    def test_four(self):
+        pass
+
+$ pytest --setup-show test_scope.py
+...
+SETUP    S sess_scope
+    SETUP    M mod_scope
+        SETUP    F func_scope
+        test_scope.py::test_one (fixtures used: func_scope, mod_scope, sess_scope)PASSED
+        TEARDOWN F func_scope
+test_scope.py::test_two
+        SETUP    F func_scope
+        test_scope.py::test_two (fixtures used: func_scope, mod_scope, sess_scope)PASSED
+        TEARDOWN F func_scope
+test_scope.py::TestSomething::test_three
+      SETUP    C class_scope
+        test_scope.py::TestSomething::test_three (fixtures used: class_scope)PASSED
+test_scope.py::TestSomething::test_four
+        test_scope.py::TestSomething::test_four (fixtures used: class_scope)PASSED
+      TEARDOWN C class_scope
+    TEARDOWN M mod_scope
+TEARDOWN S sess_scope
+
+It is obvious from output that how the setup and teardown is called after each test case.
+
+=> Using usefixtures in above fixture is almost the same as specifying the fixture name in the test method parameter
+list. The one difference is that the test can use the return value of a fixture only if it’s specified in
+the parameter list.
+
+=> In the above example tmpdir fixture, we want to use scope='session'. If the scope of a fixture is session then we wont
+be able to use tmpdir builtin fixture. Instead we will need to use tmpdir_factory
+
+    @pytest.fixture(scope=session)
+    def my_file_fixture(tmpdir_factory):
+        p = tmpdir_factory.mkdir('sub_dir').join('test.txt')
+        p.write('content')
+        assert p.read() == 'content'
+        assert len(tmpdir.listdir()) == 1
+
+Using autouse for Fixtures That Always Get Used:
+We can use autouse=True to get a fixture to run all of the time. This works well for code you want to run at certain
+times, but tests don’t really depend on any system state or data from the fixture
+Ex: Lets create test module with name test_scope.py
+
+import time
+import pytest
+
+@pytest.fixture(scope='function', autouse=True)
+def func_scope():
+    start = time.time()
+    yield
+    stop = time.time()
+    print('\nTest Duration: {:.2f}'.format(stop-start))
+
+@pytest.fixture(scope='session', autouse=True)
+def sess_scope():
+    yield
+    print('--')
+    print('Session finished: {}'.format(time.strftime('%Y %m %d - %H:%M:%S', time.localtime(time.time()))))
+
+def test_one():
+    time.sleep(2)
+def test_two():
+    time.sleep(3)
+$ pytest -v -s test_scope.py (=> '-s' is used to show print statement in test summary)
+...
+test_scope.py::test_one PASSED
+Test Duration: 2.01
+
+test_scope.py::test_two PASSED
+Test Duration: 3.00
+--
+Session finished: 2026 03 17 - 17:31:55
+
+Renaming Fixtures:
+Pytest allows us to rename the fixture with name parameter to @pytest.fixtures
+Ex:
+def big_name_fixture(name='bnf'):
+    """Big fixture function name can be renamed with name parameter"""
+    pass
+
+def test_function(bnf):
+    assert 1 == 1
+
+$pytest --setup-show test_file.py
+test_fixture.py::test_my_fixture_negative
+        SETUP    F bnf
+        test_fixture.py::test_my_fixture_negative (fixtures used: bnf)PASSED
+        TEARDOWN F bnf
+
+If you need to find out where lue is defined, you can add the pytest option --fixtures and give it
+the filename for the test. It lists all the fixtures available for the test(builtin and user defined), including ones that have
+been renamed
+$pytest --fixtures test_file.py
+
+Parametrizing Fixtures:
+We can parametrize fixture using param argument inside @pytest.fixture. Inside the fixture function current value of
+param argument is accessed using builtin fixture request as request.param. Any test that uses this fixture will run once
+for each value in the params list.
+Ex: Create test file with name test_app.py
+import pytest
+from app import is_palindrome
+
+@pytest.fixture(params=['aba', 'chandra', 'malayalam'])
+def parametrized_fixture(request):
+    return request.param
+
+def test_parameterized_fixture(parametrized_fixture):
+    assert is_palindrome(parametrized_fixture)
+
+********************************************** Builtin Fixtures ******************************************************
+1. tmpdir and tmpdir_factory:
+These builtin factory help create temporary file system directory to be used by test functions, module, class and session.
+The scope of files/directories created by tmpdir is function level and it is cleaned after every test function.
+Scope of files/directories created by tmpdir_factory is session level. We cannot use tmpdir for module, file or session
+level scope, instead we need use tmpdir_factory.
+Ex:
+def test_tmpdir(tmpdir):
+    file_a = tmpdir.join("file_a")
+    dir_a = tmpdir.mkdir("dir_a")
+    file_b = dir_a.join("file_b")
+
+    file_a.write("This is file a")
+    file_b.write("This is file b")
+
+    assert file_a.read() == "This is file a"
+    assert file_b.read() == "This is file b"
+
+def test_tmpdir_factory(tmpdir_factory):
+    dir_A = tmpdir_factory.mktemp('dir_A')
+    dir_B = tmpdir_factory.mktemp('dir_B')
+    file_A = dir_A.join('file_A')
+    file_B = dir_B.join("file_B")
+
+    file_A.write("This is file A")
+    file_B.write("This is file B")
+
+    assert file_A.read() == "This is file A"
+    assert file_B.read() == "This is file B"
+
+Let's say all the test functions inside a module needs to read a test data from a josn file. We could put a module scope
+fixture in either the module itself, or in a conftest.py file that sets up the data file like this:
+@pytest.fixture(scope='module')
+
+def create_json_file(tmpdir_factory):
+    json_file = tmpdir_factory.mktemp('test').join('test.json')
+    data = {'name':'chandra', 'age': 21}
+    with open(json_file, 'w') as f:
+        json.dump(data, f)
+    return json_file
+
+def test_json_file_name(create_json_file):
+    with open(create_json_file, 'r') as f:
+        data = json.load(f)
+    assert data['name'] == 'chandra'
+
+def test_json_file_age(create_json_file):
+    with open(create_json_file, 'r') as f:
+        data = json.load(f)
+    assert data['age'] == 21
+
+2. pytestconfig:
+We can read pytest commandline options provided using pytestconfig builtin fixture.
+To see example lets add custom options and have pytest parse it we need to add a hook function(pytest_addoption) inside
+conftest.py at top of the directories
+
+def pytest_addoption(parser):
+    parser.addoption('--opt', action='store_true', help='my custom options')
+    parser.addoption('--foo', action='store', default='bar', help='bar, tar, sar')
+
+Now lets use above created option in test functions:
+def test_options(pytestconfig):
+    assert pytestconfig.getoption('foo') == 'bar'
+    assert pytestconfig.getoption('opt') == False
+
+3. monkeypatch:
+Monkey patching in python is a dynamic way to modify a class or module at runtime. During testing "monkey patching" means
+taking over a part of runtime environment of code under test and replace it with object or function so that it is
+convenient for testing.
+
+1. lets take a example where we can mock a function call using monkeypatch builtin fixtures.
+Actual Function inside module app.py:
+
+def return_user():
+    return 'John Don'
+
+Test function and fixture inside test module:
+@pytest.fixture()
+def mock_return_user(monkeypatch):
+    def mocked_return_user():
+        return 'John Don'
+    monkeypatch.setattr('app.return_user', mock_return_user)
+
+def test_return_user(mock_return_user):
+    assert app.return_user() == 'John Don'
+
+app.return_user() function call inside test function will not make call to actual function inside app.py
+
+2. Let's take another example where we can change system environment using monkeypatch fixture
+Test Function inside module app.py:
+def read_from_home():
+    f_path = os.path.expanduser('~/test.json')
+    with open(f_path, 'r') as f:
+        data = json.load(f)
+    return data
+
+def write_to_home():
+    data = {'name': 'chandra', 'age':21}
+    f_path = os.path.expanduser('~/test.json')
+    print(f_path)
+    with open(f_path, 'w') as f:
+        json.dump(data, f)
+
+Test function inside test module:
+def test_monkey_patch_env(monkeypatch, tmpdir):
+    monkeypatch.setenv('HOME', str(tmpdir.mkdir('home')))
+    app.write_to_home()
+    data = app.read_from_home()
+    print('data: {}'.format(data))
+    assert data['name'] == 'chandra'
+
+Here with help monkeypatch and tmpdir builtin fixture instead of creating test file inside user home directory, it is
+getting created inside temporary home directory 'home' is set as HOME directory for test function under execution.
+
+************************************* Configuration Files ***********************************************************
