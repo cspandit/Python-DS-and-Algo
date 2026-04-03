@@ -1,5 +1,23 @@
 # Map and doubly linked list queue serve the best. Map is used to acheive search operation in O(1)
 # Double linked list makes deletion and insertion operation easy. get() and put() is achieved in O(1)
+"""
+1. Implement queue(double link list)
+2. Implement search map
+3. Push - Case 1. key not present in search map and len(search_map < capacity)
+                    a. create node with key, value
+                    b. add key to search map and assign node as value
+                    c. Add node at rear end of queue
+            Case 2: key not present in search map and len(search_map) == capacity
+                    a. remove front node
+                    b. repeat case 1
+            Case 3: key is present in stack
+                    a. change key's node value in search map
+                    b. Put the item at rear end. Calling get should do this
+4. get item :
+            a. key not present in search map then return -1
+            b  if key is rear node then return node value
+            c. break links and add node to rear end
+"""
 
 
 class Node:
