@@ -1,0 +1,9 @@
+{
+  "env": "default",
+  "default": {
+    "base_url": "${BASE_URL}",
+    "timeout": 10,
+    "report_path": "reports/report.html",
+    "log_level": "INFO"
+  }
+}

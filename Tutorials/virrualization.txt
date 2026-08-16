@@ -1,0 +1,9 @@
+Virtualization: At it cores it is the abstraction of physical hardware to create a virtual version of servers,
+networks, storage, memory and other computing resources. This abstraction allows to run multiple OS and applications
+run on a single physical machine, creating efficiency and flexibility on how oestruses are used.
+
+Needs of virtualization:
+1. Demand of cloud services
+2. Increased data processing needs
+3. Shift towards more aile IT operations
+

@@ -8,6 +8,7 @@ logger = setup_log(__name__)
 
 class TestSub(unittest.TestCase):
     def setUp(self):
+        logger.info("Loading test data from the test data ini file")
         self.config = configparser.ConfigParser()
         self.config.read(os.path.join(os.getcwd(), 'test_data/test_data.ini'))
 

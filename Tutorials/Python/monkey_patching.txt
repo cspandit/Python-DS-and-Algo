@@ -5,14 +5,19 @@ class A(object):
 		self.num = num
 	def __add__(self, other):
 		return A(self.num + other.num)
+
 But now we want to add another function later in the code. Suppose this function is as follows.
 	def get_num(self):
 		return self.num
+
 But how do we add this as a method in A? That's simple we just essentially place that function into A with assignment statement.
 	A.get_num = get_num
+
 Why does this work? Because functions are objects just like any other object, and methods are functions that belong to the class.
 The function get_num shall be available to all existing (already created) as well to the new instances of A
-These additions are available on all instances of that class (or its subclasses) automatically. For example:
+These additions are available on all instances of that class (or its subclasses) automatically.
+
+For example:
 foo = A(42)
 A.get_num = get_num
 bar = A(6);

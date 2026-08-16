@@ -1,0 +1,10 @@
+{
+  "FirstName": "Chandra",
+  "LastName": "Pandit",
+  "Address": {
+    "Ward": 11,
+    "Municipality": "Godaita",
+    "District": "Sarlahi",
+    "PhoneNumber": ["9663822448", "9765335633"]
+  }
+}

@@ -49,10 +49,11 @@ class TestAdd(unittest.TestCase):
 		logger.info("Assertion Expected: {} Actual: {}".format('Chandra Pandit', res))
 		self.assertEqual(res, 'Chandra Pandit')
 
-	def tearDown(self):
+	@classmethod
+	def tearDown(cls):
 		"""This like closing file or database connection or delete db
 		can be included under tearDown"""
-		self.test_data_file.close()
+		cls.test_data_file.close()
 		logger.info("closing the test data file")
 
 

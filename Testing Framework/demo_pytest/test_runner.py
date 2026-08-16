@@ -8,7 +8,7 @@ time_stamp = datetime.now().strftime("%Y-%m-%d_%H:%H:%S")
 file_name = 'Reports/Sanity_Test_Report_{}.html'.format(time_stamp)
 
 pytest.main([
-    ".",
+    "/Users/shekharpandit/PycharmProjects/Python-DS-and-Algo_new/Testing Framework/demo_pytest/",
     "--html="+file_name,
     "--self-contained-html",
     #"--report-title="+"Automated Sanity Test Report",
