@@ -12,10 +12,23 @@ print("The first white-space character is located in position:", x.start())
 
 O/P: The first white-space character is located in position: 3
 
-The Match object has properties and methods used to retrieve information about the search, and the result:
+The Match object has properties and methods used to retrieve information about the search, and the result. match() 
+method only matches start of the string:
 .span() returns a tuple containing the start-, and end positions of the match.
 .string returns the string passed into the function
 .group() returns the part of the string where there was a match
+s = "my name is shekhar"
+print(re.match("shekhar",s))
+o/p = None
+print(re.match("my",s))
+o/p = my
+
+s = "User: Shekhar"
+x = re.match("User:\s(\w+)")
+print(x.group())
+o/p = User: Shekhar
+print(x.group(1))
+o/p = Shekhar
 
 re.findall():
 
